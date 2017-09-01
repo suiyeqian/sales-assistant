@@ -6,6 +6,26 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
+// 修改bootstrap进度条
+.bg-customized {
+    background-color: #fdbf04 !important;
+}
+.progress{
+  background-color: #363125!important;
+  height: .56rem;
+  line-height: .56rem;
+  border-radius: 3px;
+}
+.progress-bar {
+  height: inherit;
+  font-size: .27rem;
+  color: #222;
+  font-weight: bold;
+}
+
+p {
+  margin-bottom: 0;
+}
 .has-grey-bgc {
   background-color: #272a39!important;
 }
