@@ -1,0 +1,54 @@
+// styles in src/style directory are applied to the whole page
+
+body {
+  background: #1b1c2a;
+  color: #ccc;
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+.has-grey-bgc {
+  background-color: #272a39!important;
+}
+.font-red {
+  color: #fe4504!important;
+}
+.font-yellow {
+  color: #fdbf04!important;
+}
+.sub-title-wrap{
+  position: relative;
+  margin-left: .52rem;
+  margin-bottom: .69rem;
+  height: .51rem;
+  overflow: hidden;
+  .dashed{
+    position: absolute;
+    width: 100%;
+    top:52%;
+    left:.2rem;
+    border-top: 1px dashed #828187;
+  }
+}
+.sub-title-wrap::before{
+  content: '';
+  height: .51rem;
+  position: absolute;
+  top:0;
+  left:0;
+  border: 3px solid #fdcb04;
+  border-radius: 2px;
+}
+.sub-title {
+  position: absolute;
+  top:.1rem;
+  color: #f2f2f3;
+  font-size: .37rem;
+  margin-left: 6px;
+  padding: 0 .27rem;
+  background-color: #1b1c2a;
+}
+.amount-value {
+  font-size: .8rem;
+  font-weight: 400;
+  margin-bottom: 0;
+}

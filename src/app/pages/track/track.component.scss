@@ -1,0 +1,44 @@
+
+.time-progress {
+  height: 1.04rem;
+  padding-top: .31rem;
+  border-bottom: 1px solid #34353c;
+  margin-bottom: .48rem;
+}
+// 当日销售业绩
+.day-performance {
+  margin-top: .21rem;
+  margin-bottom: .91rem;
+  padding: .96rem .56rem .8rem .53rem;
+  span {
+    display: inline-block;
+  }
+}
+.performance-list {
+  margin-bottom: .67rem;
+}
+.performance-item{
+  position: relative;
+  overflow: hidden;
+  height: .79rem;
+  margin-bottom: -.07rem;
+}
+.dash-line{
+  border-top: 1px dashed #fdcb04;
+  width: 100%;
+  position: absolute;
+  top: .39rem;
+  left: 0;
+}
+.item-name{
+  width: 2rem;
+  line-height: .79rem;
+  vertical-align: text-bottom;
+  position: absolute;
+}
+.item-value {
+  width: 1.2rem;
+  font-size: .53rem;
+  position: absolute;
+  right: 0;
+}

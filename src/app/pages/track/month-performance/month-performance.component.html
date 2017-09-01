@@ -1,0 +1,57 @@
+<div class="month-performance">
+  <div class="row overview">
+    <div class="col-6">
+      <div class="chart-wrap">
+        <div echarts [options]="saleProgressOption" class="sale-progress"></div>
+      </div>
+      <div class="text-center">
+        <p class="font-yellow amount-value">{{298000 | number}}</p>
+        <span>合同金额</span>
+      </div>
+    </div>
+    <div class="col-6 right-list">
+      <div class="index-item row">
+        <span class="col-8 text-left">申请单量</span>
+        <span class="col-4 text-right index-value">{{ 50 | number}}</span>
+      </div>
+      <div class="index-item row">
+        <span class="col-8 text-left">通过单量</span>
+        <span class="col-4 text-right index-value">{{ 24 | number}}</span>
+      </div>
+      <div class="index-item row">
+        <span class="col-8 text-left">拒绝单量</span>
+        <span class="col-4 text-right index-value">{{ 10 | number}}</span>
+      </div>
+      <div class="index-item row">
+        <span class="col-8 text-left">放款单量</span>
+        <span class="col-4 text-right index-value">{{ 60 | number}}</span>
+      </div>
+      <div class="index-item row">
+        <span class="col-8 text-left">通过率</span>
+        <span class="col-4 text-right index-value">{{ 29 }}%</span>
+      </div>
+    </div>
+  </div>
+  <div class="sub-title-wrap">
+    <div class="dashed"></div>
+    <h4 class="sub-title">每周业绩趋势</h4>
+  </div>
+  <div class="performance-trend">
+    <div echarts [options]="trendOption" class="trend-chart"></div>
+  </div>
+
+  <div class="sub-title-wrap">
+    <div class="dashed"></div>
+    <h4 class="sub-title">本月业绩预测</h4>
+  </div>
+  <div class="has-grey-bgc performance-forecast">
+
+  </div>
+
+  <div class="sub-title-wrap">
+    <div class="dashed"></div>
+    <h4 class="sub-title">本月考核预警</h4>
+  </div>
+
+
+</div>

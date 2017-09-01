@@ -1,0 +1,21 @@
+main {
+
+}
+.main-content{
+  padding: 0 13px;
+  font-size: .32rem;
+  margin-bottom: 1.67rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: absolute;
+  width: 100%;
+  top:0;
+  left: 0;
+}
+.tabs-bottom{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}

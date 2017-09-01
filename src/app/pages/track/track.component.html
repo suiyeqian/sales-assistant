@@ -1,0 +1,58 @@
+
+<div class="row time-progress">
+  <div class="col-6 text-left">
+    {{today | date:'yyyy-MM-dd'}}
+  </div>
+  <div class="col-6 text-right">
+    本月时间进度：48%
+  </div>
+</div>
+<my-ribbon ribbonNum="1" contentTxt="当日销售业绩"></my-ribbon>
+<div class="has-grey-bgc day-performance">
+  <div class="performance-list">
+    <p class="performance-item">
+      <span class="dash-line"></span>
+      <span class="item-name text-left has-grey-bgc">申请单量</span>
+      <span class="item-value text-right font-red has-grey-bgc">5</span>
+    </p>
+    <p class="performance-item">
+      <span class="dash-line"></span>
+      <span class="item-name text-left has-grey-bgc">通过单量</span>
+      <span class="item-value text-right font-red has-grey-bgc">2</span>
+    </p>
+    <p class="performance-item">
+      <span class="dash-line"></span>
+      <span class="item-name text-left has-grey-bgc">拒绝单量</span>
+      <span class="item-value text-right font-red has-grey-bgc">5</span>
+    </p>
+    <p class="performance-item">
+      <span class="dash-line"></span>
+      <span class="item-name text-left has-grey-bgc">放款单量</span>
+      <span class="item-value text-right font-red has-grey-bgc">2</span>
+    </p>
+    <p class="performance-item">
+      <span class="dash-line"></span>
+      <span class="item-name text-left has-grey-bgc">通过率</span>
+      <span class="item-value text-right font-red has-grey-bgc">40%</span>
+    </p>
+  </div>
+  <div class="amount text-center">
+    <p class="amount-value font-yellow">{{29800 | number}}</p>
+    <span>合同金额</span>
+  </div>
+</div>
+
+<my-ribbon ribbonNum="2" contentTxt="本月销售业绩"></my-ribbon>
+<my-month-performance></my-month-performance>
+
+
+<my-ribbon ribbonNum="3" contentTxt="风控情况"></my-ribbon>
+
+
+<my-ribbon ribbonNum="4" contentTxt="申请单追踪"></my-ribbon>
+
+
+<my-ribbon ribbonNum="5" contentTxt="逾期提醒"></my-ribbon>
+
+
+<my-ribbon ribbonNum="6" contentTxt="客户生日提醒"></my-ribbon>
