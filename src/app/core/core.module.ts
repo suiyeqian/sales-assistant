@@ -9,6 +9,7 @@ import { TabnavComponent } from './tabnav/tabnav.component';
 // import { BackendService } from './services/backend.service';
 // import { UserService } from './services/user.service';
 import { SpinnerService } from './services/spinner.service';
+import { WaterMarkService } from './services/watermark.service';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { SpinnerService } from './services/spinner.service';
   providers: [
     // UserService,
     // BackendService,
-    SpinnerService
+    SpinnerService,
+    WaterMarkService
   ]
 })
 export class CoreModule {

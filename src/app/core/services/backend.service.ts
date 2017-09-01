@@ -24,7 +24,7 @@ export class BackendService {
                .then(response => {
                  if (response.json().code === 1004 || response.json().code === 1005) {
                      localStorage.clear();
-                     window.location.href = this.loginUrl;
+                    //  window.location.href = this.loginUrl;
                      return;
                  }
                  return response.json().data;
@@ -38,7 +38,7 @@ export class BackendService {
            .then(response => {
              if (response.json().code === 1004 || response.json().code === 1005) {
                  localStorage.clear();
-                 window.location.href = this.loginUrl;
+                //  window.location.href = this.loginUrl;
                  return;
              }
              return response.json().data;

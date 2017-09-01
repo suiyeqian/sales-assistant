@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // import { BackendService } from '../core/services/backend.service';
 import { SpinnerService } from '../core/services/spinner.service';
+import { WaterMarkService } from '../core/services/watermark.service';
 
 @Component({
   selector: 'my-pages',
@@ -14,10 +15,12 @@ export class PagesComponent implements OnInit {
   constructor(
     // private bdService: BackendService,
     private spinner: SpinnerService,
+    private waterMark: WaterMarkService,
   ) { }
 
   ngOnInit() {
     this.getUser();
+    this.waterMark.load({ watermark_txt: '张小，xn042356' });
   }
 
   getUser(): void {
