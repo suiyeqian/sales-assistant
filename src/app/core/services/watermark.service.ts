@@ -6,17 +6,17 @@ export class WaterMarkService {
   defaultSettings = {
     watermark_txt: "销售助手",
     watermark_x: 0,//水印起始位置x轴坐标
-    watermark_y: 0,//水印起始位置Y轴坐标
+    watermark_y: 10,//水印起始位置Y轴坐标
     watermark_rows: 0,//水印行数
     watermark_cols: 0,//水印列数
-    watermark_x_space: 10,//水印x轴间隔
-    watermark_y_space: 440,//水印y轴间隔
+    watermark_x_space: 25,//水印x轴间隔
+    watermark_y_space: 100,//水印y轴间隔
     watermark_font: '微软雅黑',//水印字体
     watermark_color: '#ccc',//水印字体颜色
     watermark_fontsize: '.32rem',//水印字体大小
     watermark_alpha: 0.12,//水印透明度，要求设置在大于等于0.003
-    watermark_width: 400,//水印宽度
-    watermark_height: 100,//水印长度
+    watermark_width: 200,//水印宽度
+    watermark_height: 60,//水印长度
     watermark_angle: 36,//水印倾斜度数
   };
 
