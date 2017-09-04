@@ -45,7 +45,7 @@ i.help{
 .forecast-item{
   position: relative;
   overflow: hidden;
-  height: .32rem;
+  height: .38rem;
   margin-bottom: .43rem;
 }
 .dash-line{
@@ -56,8 +56,10 @@ i.help{
   left: 0;
 }
 .item-name{
-  width: 3.2rem;
-  line-height: .32rem;
+  width: 3.7rem;
+  height: .38rem;
+  line-height: .38rem;
+  font-size: .27rem;
   position: absolute;
 }
 .item-name::before{

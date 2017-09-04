@@ -20,7 +20,7 @@ export class PagesComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
-    this.waterMark.load({ watermark_txt: '张小，xn042356' });
+    this.waterMark.load({ wmk_txt: '张小，xn042356' });
   }
 
   getUser(): void {

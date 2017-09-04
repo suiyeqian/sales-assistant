@@ -1,0 +1,62 @@
+<div class="risk-control">
+  <div class="row">
+    <div class="col-6">
+      <div class="chart-wrap">
+        <div echarts [options]="riskContrilOption1" class="gauge-chart"></div>
+      </div>
+      <div class="text-center">
+        <span>逾期率（金额）</span>
+      </div>
+    </div>
+    <div class="col-6 has-grey-bgc right-box">
+      <p class="risk-item">
+        <span class="text-left risk-name">逾期金额</span>
+        <span class="text-right font-yellow risk-val">{{18 | number}}万</span>
+      </p>
+      <p class="risk-item">
+        <span class="text-left risk-name">待收金额</span>
+        <span class="text-right font-yellow risk-val">{{100 | number}}万</span>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="chart-wrap">
+        <div echarts [options]="riskContrilOption2" class="gauge-chart"></div>
+      </div>
+      <div class="text-center">
+        <span>逾期率（笔数）</span>
+      </div>
+    </div>
+    <div class="col-6 has-grey-bgc right-box">
+      <p class="risk-item">
+        <span class="text-left risk-name">逾期笔数</span>
+        <span class="text-right font-yellow risk-val">{{18 | number}}</span>
+      </p>
+      <p class="risk-item">
+        <span class="text-left risk-name">放款笔数</span>
+        <span class="text-right font-yellow risk-val">{{100 | number}}</span>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="chart-wrap">
+        <div echarts [options]="riskContrilOption3" class="gauge-chart"></div>
+      </div>
+      <div class="text-center">
+        <span>C-M2</span>
+      </div>
+    </div>
+    <div class="col-6 has-grey-bgc right-box">
+      <p class="risk-item">
+        <span class="text-left risk-name">M2</span>
+        <span class="text-right font-yellow risk-val">{{18000 | number}}</span>
+      </p>
+      <p class="risk-item">
+        <span class="text-left risk-name">C</span>
+        <span class="text-right font-yellow risk-val">{{100000 | number}}</span>
+      </p>
+    </div>
+  </div>
+</div>

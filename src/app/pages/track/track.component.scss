@@ -42,3 +42,26 @@
   position: absolute;
   right: 0;
 }
+
+// 生日提醒
+.birthday-reminder {
+  padding: .4rem .51rem;
+  margin-top: .4rem;
+  margin-bottom: 18px;
+}
+.reminder-item:not(:last-child){
+  position: relative;
+  overflow: hidden;
+  margin-bottom: .43rem;
+}
+.reminder-date{
+  width: 3.2rem;
+  margin-right: .57rem;
+}
+.reminder-date::before{
+  content: '';
+  display: inline-block;
+  border: .11rem solid #fdbf04;
+  border-radius: 50%;
+  margin-right: .29rem;
+}

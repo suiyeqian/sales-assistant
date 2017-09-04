@@ -6,11 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./month-performance.component.scss']
 })
 export class MonthPerformanceComponent {
-
-  constructor() {
-  }
-
-// 销售进度饼图
+  // 销售进度饼图
   saleProgressOption = {
     series : [
       {
@@ -30,9 +26,9 @@ export class MonthPerformanceComponent {
         },
         data : [
           {
-            name:'销售进度', value:70,
-            itemStyle : {
-              normal : {
+            name: '销售进度', value: 70,
+            itemStyle: {
+              normal: {
                 color: {
                   type: 'linear',
                   x: 0, y: 0,
@@ -60,15 +56,15 @@ export class MonthPerformanceComponent {
             }
           },
           {
-            name:'other', value:30,
-            itemStyle : {
-              normal : {
+            name: 'other', value: 30,
+            itemStyle: {
+              normal: {
                 color: '#352e28',
-                label : {
-                  show : true,
-                  position : 'center'
+                label: {
+                  show: true,
+                  position: 'center'
                 },
-                labelLine : { show : false }
+                labelLine: { show : false }
               },
               // emphasis: { color: 'rgba(0,0,0,0)' }
             }
@@ -77,18 +73,17 @@ export class MonthPerformanceComponent {
       },
     ]
   };
-
-// 周业绩趋势图
+  // 周业绩趋势图
   trendOption = {
     tooltip : {
       trigger: 'axis',
- 	    axisPointer : {
+      axisPointer: {
         type : 'shadow'
       }
     },
     calculable : true,
     legend: {
-      data: ['合同金额','放款单量'],
+      data: ['合同金额', '放款单量'],
       right: 0,
       textStyle: {
         color: '#ccc'
@@ -96,8 +91,8 @@ export class MonthPerformanceComponent {
     },
     xAxis : [
       {
-        type : 'category',
-        data : ['W1','W2','W3','W4','W5'],
+        type: 'category',
+        data: ['W1', 'W2', 'W3', 'W4', 'W5'],
         axisTick: { show: false },
         axisLabel: {
           textStyle: {
@@ -142,7 +137,7 @@ export class MonthPerformanceComponent {
           type: 'bar',
           data: [11, 13, 4, 0, 0],
           barWidth: '55%',
-          itemStyle:{
+          itemStyle: {
             normal: {
               color: {
                 type: 'linear',
@@ -169,5 +164,8 @@ export class MonthPerformanceComponent {
         }
     ]
   };
+
+  constructor() {
+  }
 
 }
