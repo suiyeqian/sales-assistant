@@ -2,6 +2,7 @@ import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -15,6 +16,13 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
+export class MyHammerConfig extends HammerGestureConfig  {
+  overrides = <any>{
+    'pinch': { enable: false },
+    'rotate': { enable: false }
+  };
+}
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -27,7 +35,10 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
   declarations: [
     AppComponent
   ],
-  providers: [ ],
+  providers: [{
+                provide: HAMMER_GESTURE_CONFIG,
+                useClass: MyHammerConfig
+                }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

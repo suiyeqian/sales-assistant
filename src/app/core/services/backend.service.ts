@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class BackendService {
   // private baseUrl = 'http://10.17.2.26:8190/' + 'mdms/';
-  private baseUrl = 'http://10.17.2.26:8188/bdsa';
+  private baseUrl = 'http://10.17.2.26:8188/bdsa/';
   jsonHeaders = new Headers({
     'Content-Type': 'application/json',
     'X-Requested-SystemCode' : 'neo_mdms',
@@ -27,12 +27,12 @@ export class BackendService {
                     //  window.location.href = this.loginUrl;
                      return;
                  }
-                 return response.json().data;
+                 return response.json();
                })
                .catch(this.handleError);
   }
 
-  getItemsByJsonParams(url: string, params): Promise<any> {
+  getByParams(url: string, params): Promise<any> {
     return this.http.post(this.baseUrl + url, JSON.stringify(params), this.jsonOption)
            .toPromise()
            .then(response => {
@@ -41,7 +41,7 @@ export class BackendService {
                 //  window.location.href = this.loginUrl;
                  return;
              }
-             return response.json().data;
+             return response.json();
            })
            .catch(this.handleError);
   }

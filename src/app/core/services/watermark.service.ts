@@ -9,13 +9,13 @@ export class WaterMarkService {
     wmk_y: 10, // 起始位置Y轴坐标
     wmk_rows: 0, // 行数
     wmk_cols: 0, // 列数
-    wmk_x_space: 0, // x轴间隔
+    wmk_x_space: 10, // x轴间隔
     wmk_y_space: 100, // y轴间隔
     wmk_font: '微软雅黑',
     wmk_color: '#ccc',
     wmk_fontsize: '.32rem',
     wmk_alpha: 0.12, // 水印透明度
-    wmk_width: 200, // 水印宽
+    wmk_width: Math.max(document.body.scrollWidth, document.body.clientWidth) > 450 ? 200 : 120, // 水印宽
     wmk_height: 60, // 水印高
     wmk_angle: 36, // 水印倾斜度数
   };
@@ -71,7 +71,8 @@ export class WaterMarkService {
       let allSpace_y = containerHeight - this.dftSettings.wmk_height * this.dftSettings.wmk_rows;
       this.dftSettings.wmk_y_space = Math.floor(allSpace_y / (this.dftSettings.wmk_rows - 1));
     }
-    // console.log(this.dftSettings.wmk_cols, this.dftSettings.wmk_x_space);
+    // console.log(page_width,this.dftSettings.wmk_cols, this.dftSettings.wmk_x_space);
+    console.log(page_height,this.dftSettings.wmk_rows, this.dftSettings.wmk_y_space);
 
     let x, y;
 
@@ -123,5 +124,5 @@ export class WaterMarkService {
     };
     // 一次性添加到document中
     document.body.appendChild(oTemp);
-  }
+  };
 }

@@ -42,6 +42,92 @@
   position: absolute;
   right: 0;
 }
+// 申请单
+.requisition-tracking, .overdue-reminder {
+  margin-top: .53rem;
+  overflow: hidden;
+  min-height: 8rem;
+}
+
+.table thead{
+  background: -webkit-linear-gradient(top,  #fdbf04 0%,#fb9a02 100%);
+  background: -o-linear-gradient(top,  #fdbf04 0%,#fb9a02 100%);
+  background: -ms-linear-gradient(top,  #fdbf04 0%,#fb9a02 100%);
+  background: linear-gradient(to bottom,  #fdbf04 0%,#fb9a02 100%);
+}
+.table thead th{
+  height: .93rem;
+  color: #222;
+  font-size: .32rem;
+  border-right: 1px solid #222;
+
+}
+.table thead th, .table td{
+  border-top-width: 0;
+  border-bottom-width: 0;
+  text-align: center;
+  padding: .23rem 0;
+}
+.table td {
+  font-size: .24rem;
+  vertical-align: middle;
+  word-wrap:break-word;
+}
+.table td.contract-no {
+  font-size: .21rem;
+  max-width: 2.4rem;
+}
+.table td.date, .table td.amount {
+  min-width: 49px;
+}
+.table td.borrower {
+  min-width: 38px;
+}
+.table td.overdue {
+  font-weight: bold;
+  color: #fe4504;
+}
+.table tr:nth-child(even) {
+  background-color: #272a39;
+}
+.no-record {
+  font-size: .53rem;
+  font-weight: bolder;
+  color: #fdbf04;
+  margin-top: 25%;
+}
+.slide-indicators{
+  position: relative;
+  ol {
+      position: absolute;
+      right: 0;
+      bottom: -14px;
+      left: 0;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: center;
+      justify-content: center;
+      padding-left: 0;
+      margin-right: 15%;
+      margin-left: 15%;
+      list-style: none;
+  }
+}
+.slide-indicators li.active{
+  background-color: #fdbf04;
+}
+.slide-indicators li {
+  position: relative;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 3px;
+  margin-left: 3px;
+  text-indent: -999px;
+  background-color: hsla(0,0%,100%,.5);
+}
 
 // 生日提醒
 .birthday-reminder {

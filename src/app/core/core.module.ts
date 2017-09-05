@@ -6,7 +6,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 
 import { TabnavComponent } from './tabnav/tabnav.component';
 
-// import { BackendService } from './services/backend.service';
+import { BackendService } from './services/backend.service';
 // import { UserService } from './services/user.service';
 import { SpinnerService } from './services/spinner.service';
 import { WaterMarkService } from './services/watermark.service';
@@ -24,7 +24,7 @@ import { WaterMarkService } from './services/watermark.service';
   ],
   providers: [
     // UserService,
-    // BackendService,
+    BackendService,
     SpinnerService,
     WaterMarkService
   ]

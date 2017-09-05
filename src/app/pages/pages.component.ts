@@ -20,7 +20,6 @@ export class PagesComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
-    this.waterMark.load({ wmk_txt: '张小，xn042356' });
   }
 
   getUser(): void {
@@ -29,6 +28,9 @@ export class PagesComponent implements OnInit {
     //      .then((res) => {
     //        this.user = res;
     //        localStorage.setItem('user', JSON.stringify(res));
+           this.user = { userId: 'xn067182', userName: '童耀毅' };
+           this.waterMark.load({ wmk_txt: this.user.userName + ' ' + this.user.userId });
+           localStorage.setItem('user', JSON.stringify(this.user));
            this.spinner.hide();
     //      });
   }
