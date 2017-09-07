@@ -5,7 +5,6 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class BackendService {
-  // private baseUrl = 'http://10.17.2.26:8190/' + 'mdms/';
   private baseUrl = 'http://10.17.2.26:8188/bdsa/';
   jsonHeaders = new Headers({
     'Content-Type': 'application/json',

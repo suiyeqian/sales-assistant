@@ -32,7 +32,7 @@ export class ReviewComponent implements OnInit {
       axisTick: { show: false },
       axisLabel: {
         formatter:  function (value) {
-          return (value/10000).toFixed(0);
+          return (value / 10000).toFixed(0);
         },
         textStyle: {
           color: '#ccc'

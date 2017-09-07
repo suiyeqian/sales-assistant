@@ -4,7 +4,7 @@
     {{today | date:'yyyy-MM-dd'}}
   </div>
   <div class="col-6 text-right">
-    本月时间进度：48%
+    本月时间进度：{{achievement.dateRate}}%
   </div>
 </div>
 <my-ribbon ribbonNum="1" contentTxt="当日销售业绩"></my-ribbon>
@@ -13,36 +13,69 @@
     <p class="performance-item">
       <span class="dash-line"></span>
       <span class="item-name text-left has-grey-bgc">申请单量</span>
-      <span class="item-value text-right font-red has-grey-bgc">5</span>
+      <span class="item-value text-right font-red has-grey-bgc">{{achievement.appNum}}</span>
     </p>
     <p class="performance-item">
       <span class="dash-line"></span>
       <span class="item-name text-left has-grey-bgc">通过单量</span>
-      <span class="item-value text-right font-red has-grey-bgc">2</span>
+      <span class="item-value text-right font-red has-grey-bgc">{{achievement.passNum}}</span>
     </p>
     <p class="performance-item">
       <span class="dash-line"></span>
       <span class="item-name text-left has-grey-bgc">拒绝单量</span>
-      <span class="item-value text-right font-red has-grey-bgc">5</span>
+      <span class="item-value text-right font-red has-grey-bgc">{{achievement.refuseNum}}</span>
     </p>
     <p class="performance-item">
       <span class="dash-line"></span>
       <span class="item-name text-left has-grey-bgc">放款单量</span>
-      <span class="item-value text-right font-red has-grey-bgc">2</span>
+      <span class="item-value text-right font-red has-grey-bgc">{{achievement.loanNum}}</span>
     </p>
     <p class="performance-item">
       <span class="dash-line"></span>
       <span class="item-name text-left has-grey-bgc">通过率</span>
-      <span class="item-value text-right font-red has-grey-bgc">40%</span>
+      <span class="item-value text-right font-red has-grey-bgc">{{achievement.passRate}}%</span>
     </p>
   </div>
   <div class="amount text-center">
-    <p class="amount-value font-yellow">{{29800 | number}}</p>
+    <p class="amount-value font-yellow">{{achievement.amt | number}}</p>
     <span>合同金额</span>
   </div>
 </div>
 
 <my-ribbon ribbonNum="2" contentTxt="本月销售业绩"></my-ribbon>
+<div class="row overview">
+  <div class="col-6">
+    <div class="chart-wrap">
+      <div echarts [options]="saleProgressOption" [loading]="saleProgressLoading"  class="sale-progress-chart"></div>
+    </div>
+    <div class="text-center">
+      <p class="font-yellow amount-value">{{achievement.monAmt | number}}</p>
+      <span>合同金额</span>
+    </div>
+  </div>
+  <div class="col-6 right-list">
+    <div class="index-item row">
+      <span class="col-8 text-left">申请单量</span>
+      <span class="col-4 text-right index-value">{{ achievement.monAppNum | number}}</span>
+    </div>
+    <div class="index-item row">
+      <span class="col-8 text-left">通过单量</span>
+      <span class="col-4 text-right index-value">{{ achievement.monPassNum | number}}</span>
+    </div>
+    <div class="index-item row">
+      <span class="col-8 text-left">拒绝单量</span>
+      <span class="col-4 text-right index-value">{{ achievement.monRefuseNum | number}}</span>
+    </div>
+    <div class="index-item row">
+      <span class="col-8 text-left">放款单量</span>
+      <span class="col-4 text-right index-value">{{ achievement.monLoanNum | number}}</span>
+    </div>
+    <div class="index-item row">
+      <span class="col-8 text-left">通过率</span>
+      <span class="col-4 text-right index-value">{{ achievement.monPassRate }}%</span>
+    </div>
+  </div>
+</div>
 <my-month-performance></my-month-performance>
 
 <my-ribbon ribbonNum="3" contentTxt="风控情况"></my-ribbon>
@@ -119,13 +152,9 @@
 <my-ribbon ribbonNum="6" contentTxt="客户生日提醒"></my-ribbon>
 <div class="has-grey-bgc birthday-reminder">
   <div class="reminder-list">
-    <p class="reminder-item">
-      <span class="text-left reminder-date">08-02</span>
-      <span >钱一、李二</span>
-    </p>
-    <p class="reminder-item">
-      <span class="text-left reminder-date">08-02</span>
-      <span >钱一、李二</span>
-    </p>
+    <div class="reminder-item row" *ngFor="let item of custBdReminds">
+      <span class="text-left reminder-date col-3">{{item.dateStr | date:'MM-dd'}}</span>
+      <div class="col-9 custlist"><span  *ngFor="let cus of item.custList;let i = index;">{{cus.name}}<span *ngIf="i != item.custList.length-1">、</span></span></div>
+    </div>
   </div>
 </div>

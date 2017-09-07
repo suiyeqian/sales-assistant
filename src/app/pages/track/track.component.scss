@@ -42,6 +42,27 @@
   position: absolute;
   right: 0;
 }
+//月销售业绩总览
+.overview{
+  margin-bottom: .8rem;
+  padding-right: 15px;
+}
+.sale-progress-chart{
+  height: 4.53rem;
+}
+.index-item{
+  height: .85rem;
+  font-size: .29rem;
+  padding: .2rem 0;
+  background: -webkit-linear-gradient(top,  #25293a 0%,#242134 100%);
+  background: -o-linear-gradient(top,  #25293a 0%,#242134 100%);
+  background: -ms-linear-gradient(top,  #25293a 0%,#242134 100%);
+  background: linear-gradient(to bottom,  #25293a 0%,#242134 100%);
+  margin-bottom: .48rem;
+}
+.index-value{
+  color: #f2f2f3;
+}
 // 申请单
 .requisition-tracking, .overdue-reminder {
   margin-top: .53rem;
@@ -138,11 +159,10 @@
 .reminder-item:not(:last-child){
   position: relative;
   overflow: hidden;
-  margin-bottom: .43rem;
+  margin-bottom: .23rem;
 }
-.reminder-date{
-  width: 3.2rem;
-  margin-right: .57rem;
+.reminder-item .reminder-date{
+  padding-right: 0;
 }
 .reminder-date::before{
   content: '';
@@ -150,4 +170,7 @@
   border: .11rem solid #fdbf04;
   border-radius: 50%;
   margin-right: .29rem;
+}
+.reminder-item .custlist {
+  padding-left: .27rem;
 }

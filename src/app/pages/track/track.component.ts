@@ -10,6 +10,9 @@ import { WaterMarkService } from '../../core/services/watermark.service';
 })
 export class TrackComponent implements OnInit {
   today = new Date();
+  saleachievementUrl = 'rest/performancetrack/sale_achievement';
+  achievement = {};
+  saleProgressOption = {};
   performancetrackUrl = 'rest/performancetrack/app_track';
   overdueremindUrl = 'rest/performancetrack/over_remind';
   pageLength = 5;
@@ -21,6 +24,8 @@ export class TrackComponent implements OnInit {
   displayOverdue = [];
   overduermdPages = [];
   overduermdCurPage = 1;
+  custBdUrl = 'rest/performancetrack/cust_bd_remind';
+  custBdReminds = [];
 
   constructor(
     private bdService: BackendService,
@@ -29,9 +34,88 @@ export class TrackComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getSaleAchievement();
     this.getPerformanceTrack();
     this.getOverdueRemind();
+    this.getCustBd();
     this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).userName + ' ' + JSON.parse(localStorage.user).userId });
+  }
+
+  getSaleAchievement(): void {
+    this.bdService
+        .getAll(this.saleachievementUrl)
+        .then((res) => {
+          if ( res.code === 0) {
+            this.achievement = res.data;
+            this.saleProgressOption = {
+              series : [
+                {
+                  type : 'pie',
+                  radius : [40, 60],
+                  itemStyle : {
+                    normal : {
+                      label : {
+                        formatter : '销售进度',
+                        textStyle: {
+                          color: '#ccc',
+                          fontSize : 12,
+                          baseline : 'top'
+                        }
+                      }
+                    },
+                  },
+                  data : [
+                    {
+                      name: '销售进度',
+                      value: res.data.monSaleRate,
+                      itemStyle: {
+                        normal: {
+                          color: {
+                            type: 'linear',
+                            x: 0, y: 0,
+                            x2: 0, y2: 1,
+                            colorStops: [
+                              { offset: 0, color: '#fdbf04'},
+                              { offset: 1, color: '#fb9a02'}
+                            ],
+                          },
+                          label : {
+                            show : true,
+                            position : 'center',
+                            formatter : '{c}%',
+                            textStyle: {
+                              color: '#fe4504',
+                              fontSize : 18,
+                              fontWeight : 'bold',
+                              baseline : 'bottom'
+                            }
+                          },
+                          labelLine : {
+                            show : false
+                          }
+                        }
+                      }
+                    },
+                    {
+                      name: 'other',
+                      value: 100 - res.data.monSaleRate,
+                      itemStyle: {
+                        normal: {
+                          color: '#352e28',
+                          label: {
+                            show: true,
+                            position: 'center'
+                          },
+                          labelLine: { show : false }
+                        },
+                      }
+                    },
+                  ]
+                },
+              ]
+            };
+          }
+        });
   }
 
   getPerformanceTrack(): void {
@@ -66,41 +150,41 @@ export class TrackComponent implements OnInit {
         });
   }
 
+  getCustBd(): void {
+    this.bdService
+        .getAll(this.custBdUrl)
+        .then((res) => {
+          if ( res.code === 0) {
+            this.custBdReminds = res.data;
+          }
+        });
+  }
+
+  // 表格翻页处理
   swipe(currentIndex: number, action = 'swipeleft', target: string) {
         if (action === 'swiperight') {
-          if (currentIndex - 1 < 1) {
-            return;
-          }
+          if (currentIndex - 1 < 1) { return; }
           if (target === 'performancetrack') {
             this.pfmtckCurPage = currentIndex - 1;
-            this.displayPerformance =
-            this.performancetracks.slice(this.pageLength * (this.pfmtckCurPage - 1), this.pageLength * this.pfmtckCurPage);
           } else if (target === 'overdueremind') {
             this.overduermdCurPage = currentIndex - 1;
-            this.displayOverdue =
-            this.overduereminds.slice(this.pageLength * (this.overduermdCurPage - 1), this.pageLength * this.overduermdCurPage);
           }
-
         }
-
         if (action === 'swipeleft') {
           if (target === 'performancetrack') {
-            if (currentIndex + 1 > this.pfmtckPages.length) {
-              return;
-            }
+            if (currentIndex + 1 > this.pfmtckPages.length) { return; }
             this.pfmtckCurPage = currentIndex + 1;
-            this.displayPerformance =
-            this.performancetracks.slice(this.pageLength * (this.pfmtckCurPage - 1), this.pageLength * this.pfmtckCurPage);
           } else if (target === 'overdueremind') {
-            if (currentIndex + 1 > this.overduermdPages.length) {
-              return;
-            }
+            if (currentIndex + 1 > this.overduermdPages.length) { return; }
             this.overduermdCurPage = currentIndex + 1;
-            this.displayOverdue =
-            this.overduereminds.slice(this.pageLength * (this.overduermdCurPage - 1), this.pageLength * this.overduermdCurPage);
           }
         }
-
+        // 申请追踪单当前页
+        this.displayPerformance =
+        this.performancetracks.slice(this.pageLength * (this.pfmtckCurPage - 1), this.pageLength * this.pfmtckCurPage);
+        // 逾期提醒当前页
+        this.displayOverdue =
+        this.overduereminds.slice(this.pageLength * (this.overduermdCurPage - 1), this.pageLength * this.overduermdCurPage);
     }
 
 }

@@ -9,27 +9,6 @@ i.help{
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
-
-.overview{
-  margin-bottom: .8rem;
-  padding-right: 15px;
-}
-.sale-progress-chart{
-  height: 4.53rem;
-}
-.index-item{
-  height: .85rem;
-  font-size: .29rem;
-  padding: .2rem 0;
-  background: -webkit-linear-gradient(top,  #25293a 0%,#242134 100%);
-  background: -o-linear-gradient(top,  #25293a 0%,#242134 100%);
-  background: -ms-linear-gradient(top,  #25293a 0%,#242134 100%);
-  background: linear-gradient(to bottom,  #25293a 0%,#242134 100%);
-  margin-bottom: .48rem;
-}
-.index-value{
-  color: #f2f2f3;
-}
 // 周业绩趋势图
 .trend-chart{
   height: 300px;
