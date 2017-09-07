@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // import { BackendService } from '../core/services/backend.service';
 import { SpinnerService } from '../core/services/spinner.service';
-import { WaterMarkService } from '../core/services/watermark.service';
+// import { WaterMarkService } from '../core/services/watermark.service';
 
 @Component({
   selector: 'my-pages',
@@ -15,7 +15,7 @@ export class PagesComponent implements OnInit {
   constructor(
     // private bdService: BackendService,
     private spinner: SpinnerService,
-    private waterMark: WaterMarkService,
+    // private waterMark: WaterMarkService,
   ) { }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class PagesComponent implements OnInit {
     //        this.user = res;
     //        localStorage.setItem('user', JSON.stringify(res));
            this.user = { userId: 'xn067182', userName: '童耀毅' };
-           this.waterMark.load({ wmk_txt: this.user.userName + ' ' + this.user.userId });
+          //  this.waterMark.load({ wmk_txt: this.user.userName + ' ' + this.user.userId });
            localStorage.setItem('user', JSON.stringify(this.user));
            this.spinner.hide();
     //      });

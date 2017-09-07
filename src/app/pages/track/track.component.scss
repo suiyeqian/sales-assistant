@@ -46,7 +46,7 @@
 .requisition-tracking, .overdue-reminder {
   margin-top: .53rem;
   overflow: hidden;
-  min-height: 8rem;
+  min-height: 6.5rem;
 }
 
 .table thead{
@@ -60,7 +60,6 @@
   color: #222;
   font-size: .32rem;
   border-right: 1px solid #222;
-
 }
 .table thead th, .table td{
   border-top-width: 0;
@@ -110,6 +109,7 @@
       padding-left: 0;
       margin-right: 15%;
       margin-left: 15%;
+      margin-bottom: .67rem;
       list-style: none;
   }
 }

@@ -18,6 +18,7 @@ const pagesRoutes: Routes = [
         children: [
           { path: '', redirectTo: 'track', pathMatch: 'full' },
           { path: 'track', component: TrackComponent },
+          { path: 'review', loadChildren: './review/review.module#ReviewModule'},
         ]
       }
     ]

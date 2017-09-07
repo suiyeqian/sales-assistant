@@ -1,0 +1,121 @@
+.last-month-review .col-6 {
+  padding-left: .2rem;
+  padding-right: .2rem;
+}
+// 业绩分析
+.analysis{
+  margin: .21rem auto .91rem;
+  padding: .36rem 0 .61rem;
+}
+.analysis-list {
+  margin-bottom: .64rem;
+  padding: 0 .93rem;
+}
+
+.analysis-item{
+  position: relative;
+  overflow: hidden;
+  height: .53rem;
+  margin-bottom: .43rem;
+  padding-bottom: .19rem;
+  border-bottom: 1px dashed #828187;
+}
+.item-name{
+  width: 70%;
+  height: .38rem;
+  line-height: .38rem;
+  font-size: .27rem;
+  position: absolute;
+}
+.item-name::before{
+  content: '';
+  display: inline-block;
+  border: .11rem solid #fdbf04;
+  border-radius: 50%;
+  margin-right: .23rem;
+}
+.item-value {
+  width: 30%;
+  font-size: .4rem;
+  font-weight: bold;
+  line-height: .4rem;
+  position: absolute;
+  right: 0;
+}
+
+// 业绩趋势
+.trend-chart{
+  height: 300px;
+}
+
+// 业绩构成
+.composition {
+  margin-bottom: .91rem;
+}
+.composition .row{
+  margin-left: 0;
+  margin-right: 0;
+}
+.pie-chart{
+  height: 4.53rem;
+}
+.composition h4 {
+  font-size: .32rem;
+  color: #f2f2f3;
+}
+.table-wrap {
+  margin-top: .37rem;
+}
+.table thead{
+  background: -webkit-linear-gradient(top,  #fdbf04 0%,#fb9a02 100%);
+  background: -o-linear-gradient(top,  #fdbf04 0%,#fb9a02 100%);
+  background: -ms-linear-gradient(top,  #fdbf04 0%,#fb9a02 100%);
+  background: linear-gradient(to bottom,  #fdbf04 0%,#fb9a02 100%);
+}
+.table thead th{
+  height: .93rem;
+  color: #222;
+  font-size: .32rem;
+  border-right: 1px solid #222;
+
+}
+.table thead th, .table td{
+  border-top-width: 0;
+  border-bottom-width: 0;
+  text-align: center;
+  padding: .23rem 0;
+}
+.table td {
+  font-size: .24rem;
+  vertical-align: middle;
+  word-wrap:break-word;
+}
+.table tr:nth-child(even) {
+  background-color: #272a39;
+}
+
+.legendlist{
+  margin: auto;
+  padding-bottom: .64rem;
+}
+.legend{
+  display: inline-block;
+  margin-right: 5px;
+  font-size: .16rem;
+  height: .16rem;
+  line-height: .16rem;
+  position: relative;
+}
+.legend-box {
+  display: inline-block;
+  width: 10px;
+  height: 5px;
+  line-height: .16rem;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+.legend span {
+  margin-left: 13px;
+}

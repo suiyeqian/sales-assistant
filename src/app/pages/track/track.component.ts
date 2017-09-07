@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BackendService } from '../../core/services/backend.service';
+import { WaterMarkService } from '../../core/services/watermark.service';
 
 @Component({
   selector: 'my-track',
@@ -22,12 +23,15 @@ export class TrackComponent implements OnInit {
   overduermdCurPage = 1;
 
   constructor(
-    private bdService: BackendService) {
+    private bdService: BackendService,
+    private waterMark: WaterMarkService
+  ) {
   }
 
   ngOnInit() {
     this.getPerformanceTrack();
     this.getOverdueRemind();
+    this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).userName + ' ' + JSON.parse(localStorage.user).userId });
   }
 
   getPerformanceTrack(): void {
@@ -80,14 +84,17 @@ export class TrackComponent implements OnInit {
         }
 
         if (action === 'swipeleft') {
-          if (currentIndex + 1 > this.pfmtckPages.length) {
-            return;
-          }
           if (target === 'performancetrack') {
+            if (currentIndex + 1 > this.pfmtckPages.length) {
+              return;
+            }
             this.pfmtckCurPage = currentIndex + 1;
             this.displayPerformance =
             this.performancetracks.slice(this.pageLength * (this.pfmtckCurPage - 1), this.pageLength * this.pfmtckCurPage);
           } else if (target === 'overdueremind') {
+            if (currentIndex + 1 > this.overduermdPages.length) {
+              return;
+            }
             this.overduermdCurPage = currentIndex + 1;
             this.displayOverdue =
             this.overduereminds.slice(this.pageLength * (this.overduermdCurPage - 1), this.pageLength * this.overduermdCurPage);
