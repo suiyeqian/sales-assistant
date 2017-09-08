@@ -1,6 +1,6 @@
 .last-month-review .col-6 {
-  padding-left: .2rem;
-  padding-right: .2rem;
+  padding-left: .12rem;
+  padding-right: .12rem;
 }
 // 业绩分析
 .analysis{
@@ -21,7 +21,7 @@
   border-bottom: 1px dashed #828187;
 }
 .item-name{
-  width: 70%;
+  width: 65%;
   height: .38rem;
   line-height: .38rem;
   font-size: .27rem;
@@ -32,10 +32,10 @@
   display: inline-block;
   border: .11rem solid #fdbf04;
   border-radius: 50%;
-  margin-right: .23rem;
+  margin-right: .13rem;
 }
 .item-value {
-  width: 30%;
+  width: 35%;
   font-size: .4rem;
   font-weight: bold;
   line-height: .4rem;
@@ -43,7 +43,7 @@
   right: 0;
 }
 
-// 业绩趋势
+// 业绩趋势图
 .trend-chart{
   height: 300px;
 }
@@ -63,37 +63,7 @@
   font-size: .32rem;
   color: #f2f2f3;
 }
-.table-wrap {
-  margin-top: .37rem;
-}
-.table thead{
-  background: -webkit-linear-gradient(top,  #fdbf04 0%,#fb9a02 100%);
-  background: -o-linear-gradient(top,  #fdbf04 0%,#fb9a02 100%);
-  background: -ms-linear-gradient(top,  #fdbf04 0%,#fb9a02 100%);
-  background: linear-gradient(to bottom,  #fdbf04 0%,#fb9a02 100%);
-}
-.table thead th{
-  height: .93rem;
-  color: #222;
-  font-size: .32rem;
-  border-right: 1px solid #222;
-
-}
-.table thead th, .table td{
-  border-top-width: 0;
-  border-bottom-width: 0;
-  text-align: center;
-  padding: .23rem 0;
-}
-.table td {
-  font-size: .24rem;
-  vertical-align: middle;
-  word-wrap:break-word;
-}
-.table tr:nth-child(even) {
-  background-color: #272a39;
-}
-
+  // 图例
 .legendlist{
   margin: auto;
   padding-bottom: .64rem;
@@ -118,4 +88,8 @@
 }
 .legend span {
   margin-left: 13px;
+}
+
+.table-wrap {
+  margin-top: .37rem;
 }

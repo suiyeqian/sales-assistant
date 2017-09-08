@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+// import { BackendService } from '../../core/services/backend.service';
 import { WaterMarkService } from '../../core/services/watermark.service';
 
 @Component({
@@ -8,6 +9,8 @@ import { WaterMarkService } from '../../core/services/watermark.service';
   styleUrls: ['./review.component.scss']
 })
 export class ReviewComponent implements OnInit {
+  // private bonustrendUrl='rest/performancereview/bonus_trend';
+
   lineOption = {
     tooltip: {
       show: false
@@ -68,12 +71,25 @@ export class ReviewComponent implements OnInit {
   };
 
   constructor(
+    // private bdService: BackendService,
     private waterMark: WaterMarkService
   ) {
   }
 
   ngOnInit() {
+    this.getBonusTrend();
     this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).userName + ' ' + JSON.parse(localStorage.user).userId });
+  }
+
+
+  getBonusTrend(): void {
+    // this.bdService
+    //     .getAll(this.bonustrendUrl)
+    //     .then((res) => {
+    //       if ( res.code === 0) {
+    //         console.log(res.data)
+    //       }
+    //     });
   }
 
 }

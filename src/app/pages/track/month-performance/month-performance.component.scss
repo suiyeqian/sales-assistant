@@ -98,9 +98,14 @@ i.help{
   color: #fe4504;
   position: absolute;
   top: -1px;
-  left: 73%;
+  // left: 73%;
   .cursor{
     height: 1.33rem;
+  }
+  img {
+    width: 10px;
+    position: relative;
+    left: -5.5px;
   }
   span {
     position: relative;

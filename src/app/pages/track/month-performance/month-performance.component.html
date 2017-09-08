@@ -1,5 +1,5 @@
 <div class="month-performance">
-  
+
   <div class="sub-title-wrap">
     <div class="dashed"></div>
     <h4 class="sub-title">每周业绩趋势</h4>
@@ -17,47 +17,39 @@
       <p class="forecast-item">
         <span class="dash-line"></span>
         <span class="item-name text-left has-grey-bgc">本月目标金额</span>
-        <span class="item-value text-right has-grey-bgc">{{500000 | number}}</span>
+        <span class="item-value text-right has-grey-bgc">{{achieveforecast.goalAmt | number}}</span>
       </p>
       <p class="forecast-item">
         <span class="dash-line"></span>
         <span class="item-name text-left has-grey-bgc">预计完成合同金额</span>
-        <span class="item-value text-right has-grey-bgc">{{500000 | number}}</span>
+        <span class="item-value text-right has-grey-bgc">{{achieveforecast.expectAmt | number}}</span>
       </p>
       <p class="forecast-item">
         <span class="dash-line"></span>
         <span class="item-name text-left has-grey-bgc">预计完成率</span>
-        <span class="item-value text-right has-grey-bgc">100%</span>
+        <span class="item-value text-right has-grey-bgc">{{achieveforecast.completionRate}}%</span>
       </p>
       <p class="forecast-item">
         <span class="dash-line"></span>
         <span class="item-name text-left has-grey-bgc">预计提成系数</span>
-        <span class="item-value text-right has-grey-bgc">4.0 %</span>
+        <span class="item-value text-right has-grey-bgc">{{achieveforecast.coefficient}} %</span>
       </p>
     </div>
     <div class="pay-percent">
       <div class="percent-bar">
-        <span class="royalty-coefficient">1.0%</span>
-        <span class="royalty-coefficient">2.3%</span>
-        <span class="royalty-coefficient">3.1%</span>
-        <span class="royalty-coefficient">3.4%</span>
-        <span class="royalty-coefficient">4.0%</span>
+        <span *ngFor="let i of intervalPers" class="royalty-coefficient">{{i | number:'1.1-2'}}%</span>
       </div>
       <div class="interval-num">
-        <span>0</span>
-        <span>5</span>
-        <span>15</span>
-        <span>30</span>
-        <span>45</span>
+        <span *ngFor="let i of intervalNums">{{i}}</span>
       </div>
-      <div id="my-percent">
+      <div id="my-percent" [style.left]="myPctPosition">
         <div class="cursor"><img src="/img/cursor.png" height="100%"></div>
-        <span>50万</span>
+        <span>{{achieveforecast.expectAmt/10000 | number:'1.0-0'}}万</span>
       </div>
     </div>
     <div class="text-center">
       <span>预计奖金提成 <i class="help"></i></span>
-      <p class="font-yellow amount-value">{{298000 | number}} 元</p>
+      <p class="font-yellow amount-value">{{achieveforecast.royaltyAmt | number}} 元</p>
     </div>
   </div>
 
@@ -69,52 +61,48 @@
     <div>
       <h5>维持进度条 <i class="help"></i></h5>
       <p class="time-line row text-center">
-        <span class="col-4">6月</span>
-        <span class="col-4">7月</span>
-        <span class="col-4">8月</span>
+        <span class="col-4" *ngFor="let i of timeList">{{i}}月</span>
       </p>
       <p class="volume row text-center font-red">
-        <span class="col-4">18件</span>
-        <span class="col-4">12件</span>
-        <span class="col-4">5件</span>
+        <span class="col-4">{{warningInfos.m2Number}}件</span>
+        <span class="col-4">{{warningInfos.m1Number}}件</span>
+        <span class="col-4">{{warningInfos.number}}件</span>
       </p>
       <div class="volume-progress">
         <span class="volume-key">件数</span>
-        <ngb-progressbar type="customized" [value]="75" [striped]="true" [animated]="true" class="volume-progress-bar">
-          <i>35</i>
+        <ngb-progressbar type="customized" [value]="warningInfos.cntRate*100" [striped]="true" [animated]="true" class="volume-progress-bar">
+          <i>{{+warningInfos.m2Number+warningInfos.m1Number+warningInfos.number}}</i>
         </ngb-progressbar>
-        <span class="font-yellow volume-val text-right">75%</span>
+        <span class="font-yellow volume-val text-right">{{warningInfos.cntRate*100}}%</span>
       </div>
       <p class="volume row text-center font-red">
-        <span class="col-4">{{270000 | number}}</span>
-        <span class="col-4">{{250000 | number}}</span>
-        <span class="col-4">{{120000 | number}}</span>
+        <span class="col-4">{{warningInfos.m2Amt | number}}</span>
+        <span class="col-4">{{warningInfos.m1Amt | number}}</span>
+        <span class="col-4">{{warningInfos.amt | number}}</span>
       </p>
       <div class="volume-progress">
         <span class="volume-key">金额</span>
-        <ngb-progressbar type="customized" [value]="86" [striped]="true" [animated]="true" class="volume-progress-bar">
-          <i>{{640000 | number}}</i>
+        <ngb-progressbar type="customized" [value]="warningInfos.amtRate*100" [striped]="true" [animated]="true" class="volume-progress-bar">
+          <i>{{+warningInfos.m2Amt+warningInfos.m1Amt+warningInfos.amt | number}}</i>
         </ngb-progressbar>
-        <span class="font-yellow volume-val text-right">86%</span>
+        <span class="font-yellow volume-val text-right">{{warningInfos.amtRate*100}}%</span>
       </div>
-      <!-- 上面的件数或金额达到100% 下面就显示达标 -->
-      <h3 class="text-center font-red">{{1==1?'考核尚未达标，请继续加油!':'恭喜，本次考核已达标！'}}</h3>
+      <h3 class="text-center font-red">{{(warningInfos.cntRate < 1 && warningInfos.amtRate < 1)?'考核尚未达标，请继续加油!':'恭喜，本次考核已达标！'}}</h3>
     </div>
-    <div class="obsolete" *ngIf="1===1">
+    <div class="obsolete" *ngIf="+warningInfos.m1Number + warningInfos.number === 0">
       <h5>淘汰进度条 <i class="help"></i></h5>
       <p class="time-line row text-center">
-        <span class="col-6">7月</span>
-        <span class="col-6">8月</span>
+        <ng-container *ngFor="let i of timeList;let idx = index"><span class="col-6" *ngIf="idx < 2">{{i}}月</span></ng-container>
       </p>
       <div class="progress-group">
         <ngb-progressbar type="customized" [value]="100" [striped]="true" [animated]="true" class="obsolete-progress-bar">
-          <i>0</i>
+          <i>{{warningInfos.m1Number}}</i>
         </ngb-progressbar>
-        <ngb-progressbar type="customized" [value]="48" [striped]="true" [animated]="true" class="obsolete-progress-bar">
-          <i>0</i>
+        <ngb-progressbar type="customized" [value]="timeProgress" [striped]="true" [animated]="true" class="obsolete-progress-bar">
+          <i>{{warningInfos.number}}</i>
         </ngb-progressbar>
       </div>
-      <span class="font-yellow volume-val text-right">74%</span>
+      <span class="font-yellow volume-val text-right">{{50 + timeProgress/2 | number:'1.0-0'}}%</span>
       <h3 class="text-center font-red">注意！本月您有被淘汰的风险！</h3>
     </div>
   </div>

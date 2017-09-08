@@ -10,11 +10,11 @@ import { WaterMarkService } from '../../core/services/watermark.service';
 })
 export class TrackComponent implements OnInit {
   today = new Date();
-  saleachievementUrl = 'rest/performancetrack/sale_achievement';
+  private saleachievementUrl = 'rest/performancetrack/sale_achievement';
   achievement = {};
   saleProgressOption = {};
-  performancetrackUrl = 'rest/performancetrack/app_track';
-  overdueremindUrl = 'rest/performancetrack/over_remind';
+  private performancetrackUrl = 'rest/performancetrack/app_track';
+  private overdueremindUrl = 'rest/performancetrack/over_remind';
   pageLength = 5;
   performancetracks: Array<any>;
   displayPerformance = [];
@@ -24,7 +24,7 @@ export class TrackComponent implements OnInit {
   displayOverdue = [];
   overduermdPages = [];
   overduermdCurPage = 1;
-  custBdUrl = 'rest/performancetrack/cust_bd_remind';
+  private custBdUrl = 'rest/performancetrack/cust_bd_remind';
   custBdReminds = [];
 
   constructor(
