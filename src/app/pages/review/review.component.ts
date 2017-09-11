@@ -9,8 +9,7 @@ import { WaterMarkService } from '../../core/services/watermark.service';
   styleUrls: ['./review.component.scss']
 })
 export class ReviewComponent implements OnInit {
-  private bonustrendUrl='rest/performancereview/bonus_trend';
-
+  private bonustrendUrl = 'rest/performancereview/bonus_trend';
   lineOption = {};
 
   constructor(
@@ -92,7 +91,7 @@ export class ReviewComponent implements OnInit {
                     symbolSize: 10
                 }
               ]
-            }
+            };
           }
         });
   }

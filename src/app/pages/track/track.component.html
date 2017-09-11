@@ -7,7 +7,7 @@
     本月时间进度：{{achievement.dateRate}}%
   </div>
 </div>
-<my-ribbon ribbonNum="1" contentTxt="当日销售业绩"></my-ribbon>
+<!-- <my-ribbon ribbonNum="1" contentTxt="当日销售业绩"></my-ribbon>
 <div class="has-grey-bgc day-performance">
   <div class="performance-list">
     <p class="performance-item">
@@ -40,9 +40,9 @@
     <p class="amount-value font-yellow">{{achievement.amt | number}}</p>
     <span>合同金额</span>
   </div>
-</div>
+</div> -->
 
-<my-ribbon ribbonNum="2" contentTxt="本月销售业绩"></my-ribbon>
+<my-ribbon ribbonNum="1" contentTxt="本月销售业绩"></my-ribbon>
 <div class="row overview">
   <div class="col-6">
     <div class="chart-wrap">
@@ -78,16 +78,16 @@
 </div>
 <my-month-performance [timeProgress]="achievement.dateRate"></my-month-performance>
 
-<my-ribbon ribbonNum="3" contentTxt="风控情况"></my-ribbon>
+<my-ribbon ribbonNum="2" contentTxt="风控情况"></my-ribbon>
 <my-risk-control></my-risk-control>
 
 
-<my-ribbon ribbonNum="4" contentTxt="申请单追踪"></my-ribbon>
+<my-ribbon ribbonNum="3" contentTxt="申请单追踪"></my-ribbon>
 <div class="requisition-tracking">
   <table class="table">
     <thead>
       <tr>
-        <th>申请日期 </th>
+        <!-- <th>申请日期 </th> -->
         <th>申请编号</th>
         <th>借款人</th>
         <th>产品</th>
@@ -97,7 +97,7 @@
     </thead>
     <tbody (swipeleft)="swipe(pfmtckCurPage, $event.type, 'performancetrack')" (swiperight)="swipe(pfmtckCurPage, $event.type, 'performancetrack')">
       <tr class="text-center" *ngFor = "let item of displayPerformance">
-        <td class="date">{{item.dateStr | date:'yy/MM/dd'}}</td>
+        <!-- <td class="date">{{item.dateStr | date:'yy/MM/dd'}}</td> -->
         <td class="contract-no">{{item.cntNum}}</td>
         <td class="borrower">{{item.borrower}}</td>
         <td>{{item.product}}</td>
@@ -114,12 +114,12 @@
   </div>
 </div>
 
-<my-ribbon ribbonNum="5" contentTxt="逾期提醒"></my-ribbon>
+<my-ribbon ribbonNum="4" contentTxt="逾期提醒"></my-ribbon>
 <div class="overdue-reminder">
   <table class="table">
     <thead>
       <tr>
-        <th>放款日期 </th>
+        <!-- <th>放款日期 </th> -->
         <th>合同号</th>
         <th>借款人</th>
         <th>借款金额</th>
@@ -129,7 +129,7 @@
     </thead>
     <tbody (swipeleft)="swipe(overduermdCurPage, $event.type, 'overdueremind')" (swiperight)="swipe(overduermdCurPage, $event.type, 'overdueremind')">
       <tr class="text-center" *ngFor = "let item of displayOverdue">
-        <td class="date">{{item.dateStr | date:'yy/MM/dd'}}</td>
+        <!-- <td class="date">{{item.dateStr | date:'yy/MM/dd'}}</td> -->
         <td class="contract-no">{{item.cntNum}}</td>
         <td class="borrower">{{item.borrower}}</td>
         <td class="amount">{{item.amt | number}}</td>
@@ -149,7 +149,7 @@
   </div>
 </div>
 
-<my-ribbon ribbonNum="6" contentTxt="客户生日提醒"></my-ribbon>
+<my-ribbon ribbonNum="5" contentTxt="客户生日提醒"></my-ribbon>
 <div class="has-grey-bgc birthday-reminder">
   <div class="reminder-list">
     <div class="reminder-item row" *ngFor="let item of custBdReminds">
