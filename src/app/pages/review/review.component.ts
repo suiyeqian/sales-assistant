@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-// import { BackendService } from '../../core/services/backend.service';
+import { BackendService } from '../../core/services/backend.service';
 import { WaterMarkService } from '../../core/services/watermark.service';
 
 @Component({
@@ -9,69 +9,12 @@ import { WaterMarkService } from '../../core/services/watermark.service';
   styleUrls: ['./review.component.scss']
 })
 export class ReviewComponent implements OnInit {
-  // private bonustrendUrl='rest/performancereview/bonus_trend';
+  private bonustrendUrl='rest/performancereview/bonus_trend';
 
-  lineOption = {
-    tooltip: {
-      show: false
-    },
-    xAxis:  {
-        type: 'category',
-        data: ['2月', '3月', '4月', '5月', '6月', '7月'],
-        axisTick: { show: false },
-        axisLabel: {
-          textStyle: {
-            color: '#ccc'
-          }
-        }
-    },
-    yAxis: {
-      type: 'value',
-      name: '单位(万元)',
-      nameTextStyle: {
-        color: '#ccc'
-      },
-      splitNumber: 3,
-      axisTick: { show: false },
-      axisLabel: {
-        formatter:  function (value) {
-          return (value / 10000).toFixed(0);
-        },
-        textStyle: {
-          color: '#ccc'
-        }
-      },
-      axisLine: { show: false },
-      splitLine: {
-        show: true,
-        lineStyle: {
-          color: ['#3a3b45']
-        }
-      },
-    },
-    color: ['#fe4504'],
-    textStyle: {
-      color: '#fdcb04'
-    },
-    series: [
-      {
-          type: 'line',
-          data: [18000, 16700, 21000, 19200, 22000, 20000],
-          label: {
-            normal: {
-             show: true,
-             position: 'bottom',
-             fontSize: 14
-           }
-          },
-          symbol: 'circle',
-          symbolSize: 10
-      }
-    ]
-  };
+  lineOption = {};
 
   constructor(
-    // private bdService: BackendService,
+    private bdService: BackendService,
     private waterMark: WaterMarkService
   ) {
   }
@@ -83,13 +26,75 @@ export class ReviewComponent implements OnInit {
 
 
   getBonusTrend(): void {
-    // this.bdService
-    //     .getAll(this.bonustrendUrl)
-    //     .then((res) => {
-    //       if ( res.code === 0) {
-    //         console.log(res.data)
-    //       }
-    //     });
+    this.bdService
+        .getAll(this.bonustrendUrl)
+        .then((res) => {
+          if ( res.code === 0) {
+            let resData = res.data;
+            let xAxisData = [];
+            for (let item of resData.months) {
+              xAxisData.push(item + '月');
+            }
+            this.lineOption = {
+              tooltip: {
+                show: false
+              },
+              xAxis:  {
+                  type: 'category',
+                  data: xAxisData,
+                  axisTick: { show: false },
+                  axisLabel: {
+                    textStyle: {
+                      color: '#ccc'
+                    }
+                  }
+              },
+              yAxis: {
+                type: 'value',
+                name: '单位(万元)',
+                nameTextStyle: {
+                  color: '#ccc'
+                },
+                splitNumber: 3,
+                axisTick: { show: false },
+                axisLabel: {
+                  formatter:  function (value) {
+                    return (value / 10000).toFixed(1);
+                  },
+                  textStyle: {
+                    color: '#ccc'
+                  }
+                },
+                axisLine: { show: false },
+                splitLine: {
+                  show: true,
+                  lineStyle: {
+                    color: ['#3a3b45']
+                  }
+                },
+              },
+              color: ['#fe4504'],
+              textStyle: {
+                color: '#fdcb04'
+              },
+              series: [
+                {
+                    type: 'line',
+                    data: [resData.m1Amt, resData.m2Amt, resData.m3Amt, resData.m4Amt, resData.m5Amt, resData.m6Amt],
+                    label: {
+                      normal: {
+                       show: true,
+                       position: 'bottom',
+                       fontSize: 14
+                     }
+                    },
+                    symbol: 'circle',
+                    symbolSize: 10
+                }
+              ]
+            }
+          }
+        });
   }
 
 }

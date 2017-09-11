@@ -17,7 +17,7 @@ export class MonthPerformanceComponent implements OnInit {
   private positionPoint = [0, 12, 27, 45, 66];
   myPctPosition: string;
   private checkwarningUrl = 'rest/performancetrack/check_warning';
-  timeList = [];
+  // timeList = [];
   warningInfos = {};
   @Input() timeProgress: number;
 
@@ -27,10 +27,10 @@ export class MonthPerformanceComponent implements OnInit {
   }
 
   ngOnInit() {
-    let getlastMonth = new Date().getMonth();
-    let lastMonth = (+getlastMonth === 0) ? 12 : getlastMonth;
-    let last2Month = (+lastMonth - 1 === 0) ? 12 : (lastMonth - 1);
-    this.timeList = [last2Month, lastMonth, getlastMonth + 1];
+    // let getlastMonth = new Date().getMonth();
+    // let lastMonth = (+getlastMonth === 0) ? 12 : getlastMonth;
+    // let last2Month = (+lastMonth - 1 === 0) ? 12 : (lastMonth - 1);
+    // this.timeList = [last2Month, lastMonth, getlastMonth + 1];
     this.getWeeklyTrend();
     this.getAchieveForecast();
     this.getWarning();

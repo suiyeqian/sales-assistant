@@ -46,6 +46,10 @@ export class LastMonthReviewComponent implements OnInit {
         .then((res) => {
           if ( res.code === 0) {
             let resData = res.data;
+            let xAxisData = [];
+            for (let item of resData.months) {
+              xAxisData.push(item + '月');
+            }
             this.trendOption = {
               tooltip: {
                 trigger: 'axis',
@@ -64,7 +68,7 @@ export class LastMonthReviewComponent implements OnInit {
               xAxis : [
                 {
                   type: 'category',
-                  data: ['2月', '3月', '4月', '5月', '6月', '7月'],
+                  data: xAxisData,
                   axisTick: { show: false },
                   axisLabel: {
                     textStyle: {

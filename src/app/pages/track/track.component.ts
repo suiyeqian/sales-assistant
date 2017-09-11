@@ -9,7 +9,6 @@ import { WaterMarkService } from '../../core/services/watermark.service';
   styleUrls: ['./track.component.scss']
 })
 export class TrackComponent implements OnInit {
-  today = new Date();
   private saleachievementUrl = 'rest/performancetrack/sale_achievement';
   achievement = {};
   saleProgressOption = {};
