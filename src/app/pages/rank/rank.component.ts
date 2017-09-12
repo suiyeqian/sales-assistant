@@ -11,6 +11,8 @@ import { WaterMarkService } from '../../core/services/watermark.service';
 export class RankComponent implements OnInit {
   private myrankUrl = 'rest/rankinginfo/my_rank';
   myRank = {};
+  imgClass: string;
+  imgUrl: string;
   private toptenUrl = 'rest/rankinginfo/top_ten';
   topTen = [];
 
@@ -32,7 +34,21 @@ export class RankComponent implements OnInit {
         .getAll(this.myrankUrl)
         .then((res) => {
           if ( res.code === 0) {
-            this.myRank = res.data;
+            let resData = res.data;
+            // let resData = {rank: 148, percent: 99};
+            this.myRank = resData;
+            if (resData.rank < 4) {
+              this.imgClass = 'rank-top';
+              this.imgUrl = '/img/rank' + resData.rank + '.png';
+            } else {
+              if (resData.percent > 90) {
+                this.imgClass = 'rank-per-10';
+                this.imgUrl = '/img/rank-per-10.png';
+              } else {
+                this.imgClass = 'rank-other';
+                this.imgUrl = '/img/rank-other.png';
+              }
+            }
             console.log(res.data);
           };
         });
