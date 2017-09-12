@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 
 import { BackendService } from '../../core/services/backend.service';
 import { WaterMarkService } from '../../core/services/watermark.service';
@@ -8,7 +8,7 @@ import { WaterMarkService } from '../../core/services/watermark.service';
   templateUrl: './rank.component.html',
   styleUrls: ['./rank.component.scss']
 })
-export class RankComponent implements OnInit {
+export class RankComponent implements OnInit, AfterContentInit {
   private myrankUrl = 'rest/rankinginfo/my_rank';
   myRank = {};
   imgClass: string;
@@ -28,20 +28,25 @@ export class RankComponent implements OnInit {
     this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).userName + ' ' + JSON.parse(localStorage.user).userId });
   }
 
+  ngAfterContentInit() {
+    if (document.body.scrollTop > 0) {
+      document.body.scrollTop = 0;
+    }
+  }
 
   getMyRank(): void {
     this.bdService
         .getAll(this.myrankUrl)
         .then((res) => {
           if ( res.code === 0) {
-            let resData = res.data;
-            // let resData = {rank: 148, percent: 99};
+            // let resData = res.data;
+            let resData = {rank: 24, percent: 98};
             this.myRank = resData;
             if (resData.rank < 4) {
               this.imgClass = 'rank-top';
               this.imgUrl = '/img/rank' + resData.rank + '.png';
             } else {
-              if (resData.percent > 90) {
+              if (resData.percent >= 90) {
                 this.imgClass = 'rank-per-10';
                 this.imgUrl = '/img/rank-per-10.png';
               } else {

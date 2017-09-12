@@ -20,6 +20,7 @@ const pagesRoutes: Routes = [
           { path: 'track', component: TrackComponent },
           { path: 'review', loadChildren: './review/review.module#ReviewModule'},
           { path: 'rank', loadChildren: './rank/rank.module#RankModule'},
+          { path: 'info', loadChildren: './info/info.module#InfoModule'}
         ]
       }
     ]

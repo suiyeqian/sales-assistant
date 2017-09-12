@@ -39,7 +39,11 @@
       </p>
     </div>
   </div>
-  <div class="row">
+  <div class="amount text-center">
+    <span>C-M2</span>
+    <p class="amount-value font-yellow">{{riskControl.m2Amt/riskControl.cAmt*100 | number:'1.0-2'}}%</p>
+  </div>
+  <!-- <div class="row">
     <div class="col-6">
       <div class="chart-wrap">
         <div echarts [options]="riskControlOption3" class="gauge-chart"></div>
@@ -58,5 +62,5 @@
         <span class="text-right font-yellow risk-val">{{riskControl.cAmt | number}}</span>
       </p>
     </div>
-  </div>
+  </div> -->
 </div>

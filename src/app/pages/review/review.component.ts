@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 
 import { BackendService } from '../../core/services/backend.service';
 import { WaterMarkService } from '../../core/services/watermark.service';
@@ -8,7 +8,7 @@ import { WaterMarkService } from '../../core/services/watermark.service';
   templateUrl: './review.component.html',
   styleUrls: ['./review.component.scss']
 })
-export class ReviewComponent implements OnInit {
+export class ReviewComponent implements OnInit, AfterContentInit {
   private bonustrendUrl = 'rest/performancereview/bonus_trend';
   lineOption = {};
 
@@ -23,6 +23,11 @@ export class ReviewComponent implements OnInit {
     this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).userName + ' ' + JSON.parse(localStorage.user).userId });
   }
 
+  ngAfterContentInit() {
+    if (document.body.scrollTop > 0) {
+      document.body.scrollTop = 0;
+    }
+  }
 
   getBonusTrend(): void {
     this.bdService

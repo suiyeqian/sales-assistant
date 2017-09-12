@@ -59,6 +59,7 @@ i.help{
 .pay-percent{
   position: relative;
   margin-bottom: 1.33rem;
+  margin-top: 1.33rem;
 }
 .percent-bar {
   height: .72rem;
@@ -99,19 +100,31 @@ i.help{
   position: absolute;
   top: -1px;
   // left: 73%;
-  .cursor{
-    height: 1.33rem;
-  }
-  img {
-    width: 10px;
-    position: relative;
-    left: -5.5px;
-  }
   span {
     position: relative;
     top:-.13rem;
     left:.13rem;
   }
+}
+#my-real-percent {
+  color: #638c0b;
+  position: absolute;
+  top: -20px;
+  span {
+    position: relative;
+    top:-1.7rem;
+  }
+}
+.cursor{
+  height: 1.33rem;
+}
+.cursor img{
+  width: 10px;
+  position: relative;
+  left: -5.5px;
+}
+.bonus-val {
+  font-size: 16px;
 }
 
 // 考核预警
@@ -131,6 +144,9 @@ i.help{
 }
 .time-line{
   font-size: .27rem;
+  margin-right: 5px;
+  margin-top: .27rem;
+  display: inline-flex;
 }
 .time-line, .volume{
   margin-left: 1rem;
@@ -144,14 +160,19 @@ i.help{
   vertical-align: sub;
 }
 .volume-key{
-  width: 12%;
+  text-align: center;
+  width: 13%;
+  position: relative;
+}
+.unit {
+  font-size: .21rem;
 }
 .volume-val {
   width: 10%;
 }
 .volume-progress-bar{
   display: inline-block;
-  width: 75%;
+  width: 74%;
 }
 .early-warning h3{
   font-size: .35rem;

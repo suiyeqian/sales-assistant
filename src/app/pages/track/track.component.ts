@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 
 import { BackendService } from '../../core/services/backend.service';
 import { WaterMarkService } from '../../core/services/watermark.service';
@@ -8,7 +8,7 @@ import { WaterMarkService } from '../../core/services/watermark.service';
   templateUrl: './track.component.html',
   styleUrls: ['./track.component.scss']
 })
-export class TrackComponent implements OnInit {
+export class TrackComponent implements OnInit, AfterContentInit {
   private saleachievementUrl = 'rest/performancetrack/sale_achievement';
   achievement = {};
   saleProgressOption = {};
@@ -38,6 +38,13 @@ export class TrackComponent implements OnInit {
     this.getOverdueRemind();
     this.getCustBd();
     this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).userName + ' ' + JSON.parse(localStorage.user).userId });
+  }
+
+
+  ngAfterContentInit() {
+    if (document.body.scrollTop > 0) {
+      document.body.scrollTop = 0;
+    }
   }
 
   getSaleAchievement(): void {
