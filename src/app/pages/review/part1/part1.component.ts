@@ -59,7 +59,7 @@ export class LastMonthReviewComponent implements OnInit {
               },
               calculable : true,
               legend: {
-                data: ['合同金额', '放款单量'],
+                data: ['合同金额', '申请单量', '放款单量'],
                 right: 0,
                 textStyle: {
                   color: '#ccc'
@@ -107,37 +107,71 @@ export class LastMonthReviewComponent implements OnInit {
                   splitLine: { show: false },
                 }
               ],
-              series : [
-                  {
-                    name: '合同金额',
-                    type: 'bar',
-                    data: [resData.m1Amt, resData.m2Amt, resData.m3Amt, resData.m4Amt, resData.m5Amt, resData.m6Amt],
-                    barWidth: '55%',
-                    itemStyle: {
-                      normal: {
-                        color: {
-                          type: 'linear',
-                          x: 0, y: 0,
-                          x2: 0, y2: 1,
-                          colorStops: [
-                            {offset: 0, color: '#fdbf04'},
-                            {offset: 1, color: '#fb9a02'}
-                          ],
-                        }
-                      }
-                    }
-                  },
-                  {
-                    name: '放款单量',
-                    type: 'line',
-                    yAxisIndex: 1,
-                    data: [resData.m1Number, resData.m2Number, resData.m3Number, resData.m4Number, resData.m5Number, resData.m6Number],
-                    lineStyle: {
-                      normal: {
-                        color: '#fe4504',
+              series: [
+                {
+                  name: '申请单量',
+                  type: 'bar',
+                  yAxisIndex: 1,
+                  data: [resData.m1AppNumber, resData.m2AppNumber, resData.m3AppNumber,
+                    resData.m4AppNumber, resData.m5AppNumber, resData.m6AppNumber],
+                  barWidth: '40%',
+                  itemStyle: {
+                    normal: {
+                      color: {
+                        type: 'linear',
+                        x: 0, y: 0,
+                        x2: 0, y2: 1,
+                        colorStops: [
+                          {offset: 0, color: '#fdbf04'},
+                          {offset: 1, color: '#fb9a02'}
+                        ],
                       }
                     }
                   }
+                },
+                {
+                  name: '放款单量',
+                  type: 'bar',
+                  yAxisIndex: 1,
+                  data: [resData.m1Number, resData.m2Number, resData.m3Number, resData.m4Number, resData.m5Number, resData.m6Number],
+                  barGap: 0,
+                  barWidth: '40%',
+                  itemStyle: {
+                    normal: {
+                      color: {
+                        type: 'linear',
+                        x: 0, y: 0,
+                        x2: 0, y2: 1,
+                        colorStops: [
+                          {offset: 0, color: '#fd6204'},
+                          {offset: 1, color: '#9a2819'}
+                        ],
+                      }
+                    }
+                  }
+                },
+
+                {
+                  name: '合同金额',
+                  type: 'line',
+                  symbol: 'circle',
+                  data: [resData.m1Amt, resData.m2Amt, resData.m3Amt, resData.m4Amt, resData.m5Amt, resData.m6Amt],
+                  itemStyle: {
+                    normal: {
+                      color: '#51c3cd',
+                    },
+                    opacity: 0
+                  },
+                  lineStyle: {
+                    normal: {
+                      color: '#51c3cd',
+                      shadowColor: 'rgba(3, 3, 3, 0.26)',
+                      shadowBlur: 10,
+                      shadowOffsetY: 2,
+                      shadowOffsetX: 2
+                    }
+                  }
+                }
               ]
             };
           }

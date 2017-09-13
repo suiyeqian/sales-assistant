@@ -35,11 +35,44 @@
       <div class="col-5">
         <img [src]="avatarUrl" class="avatar" alt="" width="100%" >
       </div>
-      <h5 class="team">{{myInfo.team}}</h5>
+      <div class="col-12">
+        <p class="info-item">
+          <span class="item-name text-left">区域</span>
+          <span class="item-value text-center font-yellow">{{myInfo.area}}</span>
+        </p>
+        <p class="info-item">
+          <span class="item-name text-left">团队</span>
+          <span class="item-value text-center font-yellow">{{myInfo.team}}</span>
+        </p>
+      </div>
     <!-- </div> -->
   </div>
 
   <my-ribbon ribbonNum="2" contentTxt="我的竞争力"></my-ribbon>
+  <div class="radar-chart-wrap">
+    <div echarts [options]="radarOption" class="radar-chart"></div>
+  </div>
 
   <my-ribbon ribbonNum="3" contentTxt="我的成长轨迹"></my-ribbon>
-</div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-badge"></div>
+      <div class="timeline-body has-grey-bgc">
+        <div class="timeline-body-arrow"> </div>
+        <div class="timeline-body-content">
+          <p class="font-yellow">2016-02-16</p>
+          <p>入职客户经理</p>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-badge"></div>
+      <div class="timeline-body has-grey-bgc">
+        <div class="timeline-body-arrow"> </div>
+        <div class="timeline-body-content">
+          <p class="font-yellow">2016-02-16</p>
+          <p>获得成就：累计放款100万</p>
+        </div>
+      </div>
+    </div>
+  </div>

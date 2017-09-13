@@ -1,5 +1,6 @@
 .risk-control {
   overflow: hidden;
+  margin-bottom: .51rem;
   .row {
     margin-bottom: .85rem;
   }
@@ -14,6 +15,7 @@
 }
 .right-box {
   padding: .67rem .24rem;
+  margin-left: -.16rem;
 }
 .risk-item {
   height: auto;
@@ -36,7 +38,14 @@
 .risk-val{
   display: inline-block;
   float: right;
-  padding-right: 15px;
+  padding-right: 9px;
   font-size: .45rem;
   font-weight: bold;
+}
+.c-m2 {
+  font-size: .55rem;
+}
+.c-m2-key{
+  font-size: 0.45rem;
+  color: #ccc!important;
 }

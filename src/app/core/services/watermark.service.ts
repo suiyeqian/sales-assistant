@@ -23,7 +23,7 @@ export class WaterMarkService {
   constructor() {
   }
 
-  load(settings = {}): void {
+  load(settings = {}, addHeight = 0): void {
     let src = Object.assign({}, settings);
     for (let key of Object.keys(src)){
       if (src[key] && this.dftSettings[key] && src[key] === this.dftSettings[key]) {
@@ -65,7 +65,7 @@ export class WaterMarkService {
     // let sumWidth_y = this.dftSettings.wmk_height * this.dftSettings.wmk_rows;
     // let sumSpace_y = this.dftSettings.wmk_y_space * (this.dftSettings.wmk_rows - 1);
     // if (this.dftSettings.wmk_rows === 0 || (this.dftSettings.wmk_y + sumWidth_y + sumSpace_y > page_height)) {
-      let containerHeight = page_height - this.dftSettings.wmk_y + 200;
+      let containerHeight = page_height - this.dftSettings.wmk_y + addHeight;
       let pieceHeight = this.dftSettings.wmk_height + this.dftSettings.wmk_y_space;
       this.dftSettings.wmk_rows = Math.floor(containerHeight / pieceHeight);
       // let allSpace_y = containerHeight - this.dftSettings.wmk_height * this.dftSettings.wmk_rows;

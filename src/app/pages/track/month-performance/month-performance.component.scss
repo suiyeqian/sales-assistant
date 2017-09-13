@@ -109,7 +109,7 @@ i.help{
 #my-real-percent {
   color: #638c0b;
   position: absolute;
-  top: -20px;
+  top: -.55rem;
   span {
     position: relative;
     top:-1.7rem;
@@ -158,6 +158,7 @@ i.help{
 .volume-progress span{
   display: inline-block;
   vertical-align: sub;
+  line-height: 11px;
 }
 .volume-key{
   text-align: center;

@@ -25,7 +25,7 @@ export class RankComponent implements OnInit, AfterContentInit {
   ngOnInit() {
     this.getMyRank();
     this.getTopTen();
-    this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).userName + ' ' + JSON.parse(localStorage.user).userId });
+    this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).userName + ' ' + JSON.parse(localStorage.user).userId }, 100);
   }
 
   ngAfterContentInit() {
@@ -39,8 +39,8 @@ export class RankComponent implements OnInit, AfterContentInit {
         .getAll(this.myrankUrl)
         .then((res) => {
           if ( res.code === 0) {
-            // let resData = res.data;
-            let resData = {rank: 24, percent: 98};
+            let resData = res.data;
+            // let resData = {rank: 24, percent: 98};
             this.myRank = resData;
             if (resData.rank < 4) {
               this.imgClass = 'rank-top';

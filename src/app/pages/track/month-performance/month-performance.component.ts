@@ -16,6 +16,7 @@ export class MonthPerformanceComponent implements OnInit {
   intervalPers = [1.0, 2.3, 3.1, 3.4, 4.0];
   private positionPoint = [0, 12, 27, 45, 66];
   myPctPosition: string;
+  myRealPctPosition: string;
   private checkwarningUrl = 'rest/performancetrack/check_warning';
   // timeList = [];
   warningInfos = {};
@@ -49,7 +50,7 @@ export class MonthPerformanceComponent implements OnInit {
               },
               calculable : true,
               legend: {
-                data: ['合同金额', '放款单量'],
+                data: ['合同金额', '申请单量', '放款单量'],
                 right: 0,
                 textStyle: { color: '#ccc' }
               },
@@ -79,6 +80,7 @@ export class MonthPerformanceComponent implements OnInit {
                 },
                 {
                   type : 'value',
+                  splitNumber: 3,
                   axisTick: { show: false },
                   axisLabel: {
                     textStyle: { color: '#ccc' }
@@ -89,10 +91,11 @@ export class MonthPerformanceComponent implements OnInit {
               ],
               series: [
                 {
-                  name: '合同金额',
+                  name: '申请单量',
                   type: 'bar',
-                  data: [resData.w1Amt, resData.w2Amt, resData.w3Amt, resData.w4Amt, resData.w5Amt],
-                  barWidth: '55%',
+                  yAxisIndex: 1,
+                  data: [resData.w1AppNumber, resData.w2AppNumber, resData.w3AppNumber, resData.w4AppNumber, resData.w5AppNumber],
+                  barWidth: '40%',
                   itemStyle: {
                     normal: {
                       color: {
@@ -109,11 +112,45 @@ export class MonthPerformanceComponent implements OnInit {
                 },
                 {
                   name: '放款单量',
-                  type: 'line',
+                  type: 'bar',
                   yAxisIndex: 1,
                   data: [resData.w1Number, resData.w2Number, resData.w3Number, resData.w4Number, resData.w5Number],
+                  barGap: 0,
+                  barWidth: '40%',
+                  itemStyle: {
+                    normal: {
+                      color: {
+                        type: 'linear',
+                        x: 0, y: 0,
+                        x2: 0, y2: 1,
+                        colorStops: [
+                          {offset: 0, color: '#fd6204'},
+                          {offset: 1, color: '#9a2819'}
+                        ],
+                      }
+                    }
+                  }
+                },
+
+                {
+                  name: '合同金额',
+                  type: 'line',
+                  symbol: 'circle',
+                  data: [resData.w1Amt, resData.w2Amt, resData.w3Amt, resData.w4Amt, resData.w5Amt],
+                  itemStyle: {
+                    normal: {
+                      color: '#51c3cd',
+                    },
+                    opacity: 0
+                  },
                   lineStyle: {
-                    normal: { color: '#fe4504' }
+                    normal: {
+                      color: '#51c3cd',
+                      shadowColor: 'rgba(3, 3, 3, 0.26)',
+                      shadowBlur: 10,
+                      shadowOffsetY: 2,
+                      shadowOffsetX: 2
+                    }
                   }
                 }
               ]
@@ -127,7 +164,6 @@ export class MonthPerformanceComponent implements OnInit {
         .getAll(this.achieveforecastUrl)
         .then((res) => {
           if ( res.code === 0) {
-            this.achieveforecast = res.data;
             // 计算提成系数的位置
             let expectAmt = res.data.expectAmt / 10000;
             for (let i = this.intervalNums.length - 1; i >= 0; i--) {
@@ -145,7 +181,30 @@ export class MonthPerformanceComponent implements OnInit {
                 this.myPctPosition = this.positionPoint[i] + (expectAmt - this.intervalNums[i]) * interval_p / interval_n + '%';
                 break;
               }
+
             }
+            // 计算已完成的提成系数的位置及已完成奖金
+            let cmpeAmt = res.data.cmpeAmt / 10000;
+            for (let i = this.intervalNums.length - 1; i >= 0; i--) {
+              if (cmpeAmt === this.intervalNums[i]) {
+                this.myRealPctPosition = this.positionPoint[i] + '%';
+                res.data.cmpeBonus = res.data.cmpeAmt * this.intervalPers[i] / 100;
+                break;
+              }
+              if (cmpeAmt > this.intervalNums[i]) {
+                res.data.cmpeBonus = res.data.cmpeAmt * this.intervalPers[i] / 100;
+                if (i === this.intervalNums.length - 1) {
+                  this.myRealPctPosition = '73%';
+                  break;
+                }
+                let interval_n = this.intervalNums[i + 1] - this.intervalNums[i];
+                let interval_p = this.positionPoint[i + 1] - this.positionPoint[i];
+                this.myRealPctPosition = this.positionPoint[i] + (cmpeAmt - this.intervalNums[i]) * interval_p / interval_n + '%';
+                break;
+              }
+            }
+            this.achieveforecast = res.data;
+            // console.log(res.data,this.myRealPctPosition,this.myPctPosition);
           }
         });
   }

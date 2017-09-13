@@ -3,9 +3,10 @@
 }
 .person-info {
   margin-top: .59rem;
+  margin-bottom: .59rem;
   padding: 0 .4rem 0 1rem;
 }
-.person-info .col-7, .person-info .col-5{
+.person-info .col-7, .person-info .col-5, .person-info .col-12{
   padding-left: .2rem;
   padding-right: .2rem;
 }
@@ -28,6 +29,9 @@
   font-size: .38rem;
   position: absolute;
 }
+.person-info .col-12 .item-name{
+  width: 25%;
+}
 .item-name::before{
   content: '';
   display: inline-block;
@@ -42,6 +46,12 @@
   line-height: .42rem;
   position: absolute;
   right: 0;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  white-space:nowrap;
+}
+.person-info .col-12 .item-value{
+  width: 75%;
 }
 .team {
   font-size: .45rem;
@@ -50,4 +60,73 @@
   text-align: center;
   margin-top: .93rem;
   margin-bottom: 1.2rem;
+}
+
+// 竞争力
+.radar-chart-wrap{
+  margin-top: .59rem;
+  margin-bottom: .59rem;
+}
+.radar-chart {
+  height: 6.67rem;
+}
+
+// timeline
+.timeline{
+  margin-top: 1.07rem;
+  margin-bottom: .88rem;
+  padding-left: 1.13rem;
+}
+.timeline .timeline-item:not(:last-child){
+  height: 3.8rem;
+}
+.timeline .timeline-badge {
+    float: left;
+    position: relative;
+    top: 0.72rem;
+    height: .4rem;
+    width: .4rem;
+    background-color: #fdcb04;
+    border-radius: 50%;
+}
+.timeline .timeline-item:not(:last-child) .timeline-badge::after {
+  content: '';
+  position: absolute;
+  border-right: 1px solid #75621b;
+  height: 2.4rem;
+  top: 0.52rem;
+  left: .185rem;
+}
+.timeline .timeline-body {
+    position: relative;
+    padding: .4rem .48rem;
+    margin-left: 1rem;
+    margin-top: -0.72rem;
+    font-size: .32rem;
+    color: #ccc;
+    width: 65vw;
+    height: 1.92rem;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+}
+.timeline .timeline-body-arrow {
+    position: absolute;
+    top: 0.72rem;
+    left: -.34rem;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: .2rem .35rem .2rem 0;
+    border-color: transparent #272a39 transparent transparent;
+}
+.timeline .timeline-body-content p:first-child{
+  margin-bottom: .2rem;
+}
+.timeline .timeline-body-content p:last-child{
+  text-overflow:ellipsis;
+  overflow:hidden;
+  white-space:nowrap;
 }
