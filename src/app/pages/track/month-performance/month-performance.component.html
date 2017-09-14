@@ -37,15 +37,15 @@
       <p class="forecast-item">
         <span class="dash-line"></span>
         <span class="item-name text-left has-grey-bgc">预计提成系数</span>
-        <span class="item-value text-right has-grey-bgc">{{achieveforecast.coefficient}} %</span>
+        <span class="item-value text-right has-grey-bgc">{{achieveforecast.coefficient | number:'1.1-1'}} %</span>
       </p>
     </div>
     <div class="pay-percent">
       <div class="percent-bar">
-        <span *ngFor="let i of intervalPers" class="royalty-coefficient">{{i | number:'1.1-2'}}%</span>
+        <span *ngFor="let i of achieveforecast.coefficients" class="royalty-coefficient">{{i | number:'1.1-2'}}%</span>
       </div>
       <div class="interval-num">
-        <span *ngFor="let i of intervalNums">{{i}}</span>
+        <span *ngFor="let i of achieveforecast.sections">{{i}}</span>
       </div>
       <div id="my-real-percent" [style.left]="myRealPctPosition">
         <div class="cursor"><img src="/img/cursor-green.png" height="100%"></div>
@@ -62,10 +62,11 @@
         <p class="font-yellow bonus-val">{{achieveforecast.cmpeBonus | number:'1.0-2'}} 元</p>
       </div>
       <div class="col-6">
-        <span>本月预计奖金 <i class="help"></i></span>
+        <span>本月预计奖金</span>
         <p class="font-yellow bonus-val">{{achieveforecast.royaltyAmt | number}} 元</p>
       </div>
     </div>
+    <p class="remark">* 奖金金额仅供参考，实际奖金金额以薪酬核算结果为准</p>
   </div>
 
   <div class="sub-title-wrap">
@@ -74,9 +75,9 @@
   </div>
   <div class="early-warning has-grey-bgc">
     <div>
-      <h5>维持进度条 <i class="help"></i></h5>
-      <p class="text-center">当前MOB为 <span class="font-yellow bold">6</span></p>
-      <p class="text-center">本次考核目标件数为<span class="font-yellow bold"> 40 </span>件，目标金额为<span class="font-yellow bold"> 80 </span>万元</p>
+      <h5>维持进度条</h5>
+      <p class="text-center">当前MOB为 <span class="font-yellow bold">{{warningInfos.mob}}</span></p>
+      <p class="text-center">本次考核目标件数为<span class="font-yellow bold"> {{warningInfos.goalCnt}} </span>件，目标金额为<span class="font-yellow bold"> {{warningInfos.goalAmt}} </span>万元</p>
       <p class="time-line row text-center">
         <span class="col-4" *ngFor="let i of warningInfos.months">{{i}}月</span>
       </p>
@@ -89,9 +90,9 @@
       <div class="volume-progress">
         <span class="volume-key">件数</span>
         <ngb-progressbar type="customized" [value]="warningInfos.cntRate*100" [striped]="true" [animated]="true" class="volume-progress-bar">
-          <i>{{+warningInfos.m2Number+warningInfos.m1Number+warningInfos.number}}</i>
+          <i>{{warningInfos.totalNum}}</i>
         </ngb-progressbar>
-        <span class="font-yellow volume-val text-center">{{40 - warningInfos.m2Number - warningInfos.m1Number - warningInfos.number <= 0 ? 0 : 40 - warningInfos.m2Number - warningInfos.m1Number - warningInfos.number}}</span>
+        <span class="font-yellow volume-val text-center">{{warningInfos.goalCnt - warningInfos.totalNum <= 0 ? 0 : warningInfos.goalCnt - warningInfos.totalNum}}</span>
       </div>
       <p class="volume row text-center font-red">
         <span class="col-4">{{warningInfos.m2Amt | number}}</span>
@@ -101,14 +102,14 @@
       <div class="volume-progress">
         <span class="volume-key">金额<br><span class="unit">(万元)</span></span>
         <ngb-progressbar type="customized" [value]="warningInfos.amtRate*100" [striped]="true" [animated]="true" class="volume-progress-bar">
-          <i>{{+warningInfos.m2Amt+warningInfos.m1Amt+warningInfos.amt | number}}</i>
+          <i>{{warningInfos.totalAmt | number:'1.0-2'}}</i>
         </ngb-progressbar>
-        <span class="font-yellow volume-val text-center">{{80 - warningInfos.m2Amt - warningInfos.m1Amt - warningInfos.amt <= 0 ? 0 : 80 - warningInfos.m2Amt - warningInfos.m1Amt - warningInfos.amt}}</span>
+        <span class="font-yellow volume-val text-center">{{+warningInfos.goalAmt - warningInfos.totalAmt <= 0 ? 0 : warningInfos.goalAmt - warningInfos.totalAmt | number:'1.0-2'}}</span>
       </div>
       <h3 class="text-center font-red">{{(warningInfos.cntRate < 1 && warningInfos.amtRate < 1)?'考核尚未达标，请继续加油!':'恭喜，本次考核已达标！'}}</h3>
     </div>
     <div class="obsolete" *ngIf="+warningInfos.m1Number + warningInfos.number === 0">
-      <h5>淘汰进度条 <i class="help"></i></h5>
+      <h5>淘汰进度条</h5>
       <p class="time-line row text-center">
         <ng-container *ngFor="let i of warningInfos.months;let idx = index"><span class="col-6" *ngIf="idx < 2">{{i}}月</span></ng-container>
       </p>

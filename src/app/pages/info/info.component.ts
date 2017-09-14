@@ -11,8 +11,10 @@ import { WaterMarkService } from '../../core/services/watermark.service';
 export class InfoComponent implements OnInit, AfterContentInit {
   private myinfoUrl = 'rest/personalinfo/my_info';
   myInfo = {};
-  avatarUrl: string;
+  private mycompUrl = 'rest/personalinfo/my_comp';
   radarOption = {};
+  private growthtrackUrl = 'rest/personalinfo/growth_track';
+  growthTrack = [];
 
   constructor(
     private bdService: BackendService,
@@ -22,58 +24,8 @@ export class InfoComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
     this.getMyInfo();
-    this.radarOption = {
-      tooltip: { show: false},
-      radar: [
-        {
-          indicator: [
-            {text: 'C-M2', max: 5},
-            {text: '申请单量', max: 5},
-            {text: '件均金额', max: 5},
-            {text: '合同金额', max: 5},
-            {text: '通过率', max: 5}
-          ],
-          radius: 80,
-          name: {
-            textStyle: {
-              color: '#fdcb04'
-            }
-          },
-          splitLine: {
-            lineStyle: { color: '#43434e' }
-          },
-          splitArea: { show: false },
-          axisLine: { show: false }
-        }
-      ],
-      series: [
-        {
-          name: '我的竞争力',
-          type: 'radar',
-          symbol: 'none',
-          lineStyle: {
-            normal: {
-              opacity: 0
-            }
-          },
-          areaStyle: {
-            normal: {
-              opacity: 1,
-              color: {
-                type: 'linear',
-                x: 0, y: 0,
-                x2: 0, y2: 1,
-                colorStops: [
-                  { offset: 0, color: '#fb9a02' },
-                  { offset: 1, color: '#fdbf04' }
-                ]
-              }
-           }
-         },
-          data: [{ value: [1, 2, 5, 2, 2] }]
-        }
-      ]
-    };
+    this.getMyComp();
+    this.getGrowthTrack();
     this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).userName + ' ' + JSON.parse(localStorage.user).userId });
   }
 
@@ -89,13 +41,88 @@ export class InfoComponent implements OnInit, AfterContentInit {
         .then((res) => {
           if ( res.code === 0) {
             let resData = res.data;
-            this.myInfo = res.data;
-            if (res.data.sex === '男') {
-              this.avatarUrl = '/img/man.png';
+            if (resData.sex === '男') {
+              resData.avatarUrl = '/img/man.png';
             } else {
-              this.avatarUrl = '/img/woman.png';
+              resData.avatarUrl = '/img/woman.png';
             }
-            console.log(resData);
+            this.myInfo = resData;
+          }
+        });
+  }
+
+  getMyComp(): void {
+    this.bdService
+        .getAll(this.mycompUrl)
+        .then((res) => {
+          if ( res.code === 0) {
+            let resData = res.data;
+            let indicator = [];
+            let dataVals = [];
+            for (let item of resData) {
+              indicator.push({text: item.name, max: 5});
+              dataVals.push(item.value);
+            }
+            this.radarOption = {
+              tooltip: { show: false},
+              radar: [
+                {
+                  indicator: indicator,
+                  radius: 80,
+                  name: {
+                    textStyle: {
+                      color: '#fdcb04'
+                    }
+                  },
+                  splitLine: {
+                    lineStyle: { color: '#43434e' }
+                  },
+                  splitArea: { show: false },
+                  axisLine: { show: false }
+                }
+              ],
+              series: [
+                {
+                  name: '我的竞争力',
+                  type: 'radar',
+                  symbol: 'none',
+                  lineStyle: {
+                    normal: {
+                      opacity: 0
+                    }
+                  },
+                  areaStyle: {
+                    normal: {
+                      opacity: 1,
+                      color: {
+                        type: 'linear',
+                        x: 0, y: 0,
+                        x2: 0, y2: 1,
+                        colorStops: [
+                          { offset: 0, color: '#fb9a02' },
+                          { offset: 1, color: '#fdbf04' }
+                        ]
+                      }
+                   }
+                 },
+                  data: [{ value: dataVals }]
+                }
+              ]
+            };
+          }
+        });
+  }
+
+  getGrowthTrack(): void {
+    this.bdService
+        .getAll(this.growthtrackUrl)
+        .then((res) => {
+          if ( res.code === 0) {
+            let resData = res.data;
+            this.growthTrack = resData;
+            this.waterMark.load(
+              { wmk_txt: JSON.parse(localStorage.user).userName + ' ' + JSON.parse(localStorage.user).userId },
+              120 * resData.length);
           }
         });
   }

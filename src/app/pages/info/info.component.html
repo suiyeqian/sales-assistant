@@ -33,7 +33,7 @@
         </p> -->
       </div>
       <div class="col-5">
-        <img [src]="avatarUrl" class="avatar" alt="" width="100%" >
+        <img [src]="myInfo.avatarUrl" class="avatar" alt="" width="100%" >
       </div>
       <div class="col-12">
         <p class="info-item">
@@ -55,23 +55,13 @@
 
   <my-ribbon ribbonNum="3" contentTxt="我的成长轨迹"></my-ribbon>
   <div class="timeline">
-    <div class="timeline-item">
+    <div class="timeline-item" *ngFor="let item of growthTrack">
       <div class="timeline-badge"></div>
       <div class="timeline-body has-grey-bgc">
         <div class="timeline-body-arrow"> </div>
         <div class="timeline-body-content">
-          <p class="font-yellow">2016-02-16</p>
-          <p>入职客户经理</p>
-        </div>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-badge"></div>
-      <div class="timeline-body has-grey-bgc">
-        <div class="timeline-body-arrow"> </div>
-        <div class="timeline-body-content">
-          <p class="font-yellow">2016-02-16</p>
-          <p>获得成就：累计放款100万</p>
+          <p class="font-yellow">{{item.dateStr}}</p>
+          <p>{{item.event}}</p>
         </div>
       </div>
     </div>

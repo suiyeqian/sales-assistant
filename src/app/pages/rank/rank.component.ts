@@ -54,7 +54,6 @@ export class RankComponent implements OnInit, AfterContentInit {
                 this.imgUrl = '/img/rank-other.png';
               }
             }
-            console.log(res.data);
           };
         });
   }
