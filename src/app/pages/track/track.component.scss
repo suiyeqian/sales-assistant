@@ -73,32 +73,6 @@
   overflow: hidden;
   min-height: 6.5rem;
 }
-// .table thead{
-//   background: -webkit-linear-gradient(top,  #fdbf04 0%,#fb9a02 100%);
-//   background: -o-linear-gradient(top,  #fdbf04 0%,#fb9a02 100%);
-//   background: -ms-linear-gradient(top,  #fdbf04 0%,#fb9a02 100%);
-//   background: linear-gradient(to bottom,  #fdbf04 0%,#fb9a02 100%);
-// }
-// .table thead th{
-//   height: .93rem;
-//   color: #222;
-//   font-size: .32rem;
-//   border-right: 1px solid #222;
-// }
-// .table thead th, .table td{
-//   border-top-width: 0;
-//   border-bottom-width: 0;
-//   text-align: center;
-//   padding: .23rem 0;
-// }
-// .table td {
-//   font-size: .24rem;
-//   vertical-align: middle;
-//   word-wrap:break-word;
-// }
-// .table tr:nth-child(even) {
-//   background-color: #272a39;
-// }
 .table td.contract-no {
   font-size: .21rem;
   max-width: 2.4rem;
@@ -119,6 +93,9 @@
   color: #fdbf04;
   margin-top: 25%;
 }
+// .table tbody{
+//   min-height: 300px!important;
+// }
 .slide-indicators{
   position: relative;
   ol {

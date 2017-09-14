@@ -21,7 +21,7 @@
   border-bottom: 1px dashed #828187;
 }
 .item-name{
-  width: 65%;
+  width: 55%;
   height: .38rem;
   line-height: .38rem;
   font-size: .27rem;
@@ -35,7 +35,7 @@
   margin-right: .13rem;
 }
 .item-value {
-  width: 35%;
+  width: 45%;
   font-size: .4rem;
   font-weight: bold;
   line-height: .4rem;
@@ -59,7 +59,7 @@
 .pie-chart{
   height: 4.53rem;
 }
-.composition h4 {
+.composition .chart-title {
   font-size: .32rem;
   color: #f2f2f3;
 }
@@ -71,7 +71,7 @@
 .legend{
   display: inline-block;
   margin-right: 5px;
-  font-size: 12px;
+  font-size: 10px;
   height: .16rem;
   line-height: .16rem;
   position: relative;
@@ -93,4 +93,7 @@
 .table-wrap {
   margin-top: .37rem;
   min-height: 180px;
+}
+.table td {
+  font-size: 13px;
 }
