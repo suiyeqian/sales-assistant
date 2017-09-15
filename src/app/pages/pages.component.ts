@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-// import { BackendService } from '../core/services/backend.service';
+import { BackendService } from '../core/services/backend.service';
 import { SpinnerService } from '../core/services/spinner.service';
 // import { WaterMarkService } from '../core/services/watermark.service';
 
@@ -11,9 +11,10 @@ import { SpinnerService } from '../core/services/spinner.service';
 })
 export class PagesComponent implements OnInit {
   user = Object.assign({});
+  private userUrl = 'rest/personalinfo/my_info';
 
   constructor(
-    // private bdService: BackendService,
+    private bdService: BackendService,
     private spinner: SpinnerService,
     // private waterMark: WaterMarkService,
   ) { }
@@ -23,15 +24,13 @@ export class PagesComponent implements OnInit {
   }
 
   getUser(): void {
-    //  this.bdService
-    //      .getItemsByJsonParams('user/find_user_by_ticket', {})
-    //      .then((res) => {
-    //        this.user = res;
-    //        localStorage.setItem('user', JSON.stringify(res));
-           this.user = { userId: 'xn067182', userName: '童耀毅' };
-          //  this.waterMark.load({ wmk_txt: this.user.userName + ' ' + this.user.userId });
-           localStorage.setItem('user', JSON.stringify(this.user));
-           this.spinner.hide();
-    //      });
+     this.bdService
+         .getAll(this.userUrl)
+         .then((res) => {
+           if ( res.code === 0) {
+             localStorage.setItem('user', JSON.stringify(res.data));
+             this.spinner.hide();
+           }
+         });
   }
 }

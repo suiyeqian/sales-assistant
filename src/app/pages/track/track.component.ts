@@ -37,7 +37,7 @@ export class TrackComponent implements OnInit, AfterContentInit {
     this.getPerformanceTrack();
     this.getOverdueRemind();
     this.getCustBd();
-    this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).userName + ' ' + JSON.parse(localStorage.user).userId }, 200);
+    this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).name + ' ' + JSON.parse(localStorage.user).number }, 300);
   }
 
 

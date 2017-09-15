@@ -53,8 +53,8 @@
 }
 .index-item{
   height: .79rem;
-  font-size: .29rem;
-  padding: .13rem 0;
+  font-size: .36rem;
+  padding: .1rem 0;
   background: -webkit-linear-gradient(top,  #25293a 0%,#242134 100%);
   background: -o-linear-gradient(top,  #25293a 0%,#242134 100%);
   background: -ms-linear-gradient(top,  #25293a 0%,#242134 100%);
@@ -71,7 +71,7 @@
 .requisition-tracking, .overdue-reminder {
   margin-top: .53rem;
   overflow: hidden;
-  min-height: 6.5rem;
+  min-height: 6rem;
 }
 .table td.contract-no {
   font-size: .21rem;
@@ -99,9 +99,9 @@
 .slide-indicators{
   position: relative;
   ol {
-      position: absolute;
+      position: relative;
       right: 0;
-      bottom: -14px;
+      // bottom: -14px;
       left: 0;
       display: -ms-flexbox;
       display: flex;
@@ -110,7 +110,7 @@
       padding-left: 0;
       margin-right: 15%;
       margin-left: 15%;
-      margin-bottom: .67rem;
+      // margin-bottom: .67rem;
       list-style: none;
   }
 }

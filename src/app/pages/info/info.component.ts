@@ -9,7 +9,6 @@ import { WaterMarkService } from '../../core/services/watermark.service';
   styleUrls: ['./info.component.scss']
 })
 export class InfoComponent implements OnInit, AfterContentInit {
-  private myinfoUrl = 'rest/personalinfo/my_info';
   myInfo = {};
   private mycompUrl = 'rest/personalinfo/my_comp';
   radarOption = {};
@@ -23,32 +22,22 @@ export class InfoComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit() {
-    this.getMyInfo();
+    let userInfo = JSON.parse(localStorage.user);
+    if (userInfo.sex === '男') {
+      userInfo.avatarUrl = '/img/man.png';
+    } else {
+      userInfo.avatarUrl = '/img/woman.png';
+    }
+    this.myInfo = userInfo;
     this.getMyComp();
     this.getGrowthTrack();
-    this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).userName + ' ' + JSON.parse(localStorage.user).userId });
+    this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).name + ' ' + JSON.parse(localStorage.user).number });
   }
 
   ngAfterContentInit() {
     if (document.body.scrollTop > 0) {
       document.body.scrollTop = 0;
     }
-  }
-
-  getMyInfo(): void {
-    this.bdService
-        .getAll(this.myinfoUrl)
-        .then((res) => {
-          if ( res.code === 0) {
-            let resData = res.data;
-            if (resData.sex === '男') {
-              resData.avatarUrl = '/img/man.png';
-            } else {
-              resData.avatarUrl = '/img/woman.png';
-            }
-            this.myInfo = resData;
-          }
-        });
   }
 
   getMyComp(): void {
@@ -121,7 +110,7 @@ export class InfoComponent implements OnInit, AfterContentInit {
             let resData = res.data;
             this.growthTrack = resData;
             this.waterMark.load(
-              { wmk_txt: JSON.parse(localStorage.user).userName + ' ' + JSON.parse(localStorage.user).userId },
+              { wmk_txt: JSON.parse(localStorage.user).name + ' ' + JSON.parse(localStorage.user).number },
               120 * resData.length);
           }
         });
