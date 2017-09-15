@@ -3,6 +3,8 @@ import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { BackendService } from '../../core/services/backend.service';
 import { WaterMarkService } from '../../core/services/watermark.service';
 
+import * as echart from '../../echarts';
+
 @Component({
   selector: 'my-track',
   templateUrl: './track.component.html',
@@ -53,73 +55,9 @@ export class TrackComponent implements OnInit, AfterContentInit {
         .then((res) => {
           if ( res.code === 0) {
             this.achievement = res.data;
-            this.saleProgressOption = {
-              series : [
-                {
-                  type : 'pie',
-                  radius : [40, 60],
-                  itemStyle : {
-                    normal : {
-                      label : {
-                        formatter : '销售进度',
-                        textStyle: {
-                          color: '#ccc',
-                          fontSize : 12,
-                          baseline : 'top'
-                        }
-                      }
-                    },
-                  },
-                  data : [
-                    {
-                      name: '销售进度',
-                      value: res.data.monSaleRate,
-                      itemStyle: {
-                        normal: {
-                          color: {
-                            type: 'linear',
-                            x: 0, y: 0,
-                            x2: 0, y2: 1,
-                            colorStops: [
-                              { offset: 0, color: '#fdbf04'},
-                              { offset: 1, color: '#fb9a02'}
-                            ],
-                          },
-                          label : {
-                            show : true,
-                            position : 'center',
-                            formatter : '{c}%',
-                            textStyle: {
-                              color: '#fe4504',
-                              fontSize : 18,
-                              fontWeight : 'bold',
-                              baseline : 'bottom'
-                            }
-                          },
-                          labelLine : {
-                            show : false
-                          }
-                        }
-                      }
-                    },
-                    {
-                      name: 'other',
-                      value: 100 - res.data.monSaleRate,
-                      itemStyle: {
-                        normal: {
-                          color: '#352e28',
-                          label: {
-                            show: true,
-                            position: 'center'
-                          },
-                          labelLine: { show : false }
-                        },
-                      }
-                    },
-                  ]
-                },
-              ]
-            };
+            echart.ProgressChartOptions.series[0].data[0].value = res.data.monSaleRate;
+            echart.ProgressChartOptions.series[0].data[1].value = 100 - res.data.monSaleRate;
+            this.saleProgressOption = echart.ProgressChartOptions;
           }
         });
   }

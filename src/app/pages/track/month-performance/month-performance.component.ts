@@ -86,6 +86,27 @@ export class MonthPerformanceComponent implements OnInit {
               ],
               series: [
                 {
+                  name: '合同金额',
+                  type: 'line',
+                  symbol: 'circle',
+                  data: [resData.w1Amt, resData.w2Amt, resData.w3Amt, resData.w4Amt, resData.w5Amt],
+                  itemStyle: {
+                    normal: {
+                      color: '#51c3cd',
+                    },
+                    opacity: 0
+                  },
+                  lineStyle: {
+                    normal: {
+                      color: '#51c3cd',
+                      shadowColor: 'rgba(3, 3, 3, 0.26)',
+                      shadowBlur: 10,
+                      shadowOffsetY: 2,
+                      shadowOffsetX: 2
+                    }
+                  }
+                },
+                {
                   name: '申请单量',
                   type: 'bar',
                   yAxisIndex: 1,
@@ -126,28 +147,6 @@ export class MonthPerformanceComponent implements OnInit {
                     }
                   }
                 },
-
-                {
-                  name: '合同金额',
-                  type: 'line',
-                  symbol: 'circle',
-                  data: [resData.w1Amt, resData.w2Amt, resData.w3Amt, resData.w4Amt, resData.w5Amt],
-                  itemStyle: {
-                    normal: {
-                      color: '#51c3cd',
-                    },
-                    opacity: 0
-                  },
-                  lineStyle: {
-                    normal: {
-                      color: '#51c3cd',
-                      shadowColor: 'rgba(3, 3, 3, 0.26)',
-                      shadowBlur: 10,
-                      shadowOffsetY: 2,
-                      shadowOffsetX: 2
-                    }
-                  }
-                }
               ]
             };
           }
