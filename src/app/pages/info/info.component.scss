@@ -4,7 +4,7 @@
 .person-info {
   margin-top: .59rem;
   margin-bottom: .59rem;
-  padding: 0 .4rem 0 1rem;
+  padding: 0 .6rem 0 .8rem;
 }
 .person-info .col-7, .person-info .col-5, .person-info .col-12{
   padding-left: .2rem;
@@ -98,13 +98,13 @@
 }
 .timeline .timeline-body {
     position: relative;
-    padding: .4rem .48rem;
+    padding: 15px .48rem;
     margin-left: 1rem;
     margin-top: -0.72rem;
-    font-size: 12px;
+    font-size: 16px;
     color: #ccc;
     width: 65vw;
-    height: 1.92rem;
+    height: 80px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
@@ -121,9 +121,9 @@
     border-width: .2rem .35rem .2rem 0;
     border-color: transparent #272a39 transparent transparent;
 }
-.timeline .timeline-body-content p:first-child{
-  margin-bottom: .14rem;
-}
+// .timeline .timeline-body-content p:first-child{
+//   margin-bottom: .14rem;
+// }
 .timeline .timeline-body-content p:last-child{
   text-overflow:ellipsis;
   overflow:hidden;

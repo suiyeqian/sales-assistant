@@ -2,7 +2,7 @@
   <my-ribbon ribbonNum="1" contentTxt="我的排名"></my-ribbon>
   <div class="my-rank" [ngClass]="imgClass">
     <img [src]="imgUrl" alt="">
-    <span class="percent-num font-yellow" *ngIf="myRank.rank < 4" [class.rankOne]="myRank.percent == 100">{{myRank.percent}}<span class="percent-symble">%</span></span>
+    <span class="percent-num font-yellow" *ngIf="myRank.rank < 4" [class.rankOne]="myRank.percent == 100">{{100 - myRank.percent}}<span class="percent-symble">%</span></span>
     <span class="rank-num" *ngIf="myRank.rank > 3" [class.rankOne]="myRank.percent == 100">{{myRank.rank}}</span>
   </div>
   <my-ribbon ribbonNum="2" contentTxt="TOP 10"></my-ribbon>
@@ -13,11 +13,11 @@
           <th>排名</th>
           <th>营业部</th>
           <th>姓名</th>
-          <th>合同金额</th>
+          <th>合同金额(万元)</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="text-center" *ngFor="let item of topTen">
+        <tr class="text-center" *ngFor="let item of topTen" [class.font-yellow]="item.rank === myRank.rank">
           <td class="font-yellow">{{item.rank}}</td>
           <td>{{item.deptName}}</td>
           <td>{{item.name}}</td>

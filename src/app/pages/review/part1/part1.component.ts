@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BackendService } from '../../../core/services/backend.service';
+import * as echart from '../../../echarts';
 
 @Component({
   selector: 'my-last-month-review',
@@ -15,7 +16,8 @@ export class LastMonthReviewComponent implements OnInit {
   private pfmccompositionUrl = 'rest/performancereview/perf_form';
   pfmcComposition = [];
   legendList = [];
-  legendColorList = ['#f3c143', '#ec7c30', '#b3b239', '#dd9261'];
+  // legendColorList = ['#f3c143', '#ec7c30', '#b3b239', '#dd9261'];
+  legendColorList = ['rgba(255,144,0,1)', 'rgba(254,183,5,1)', 'rgba(254,216,26,1)', '#fd6204'];
   loanOrderOption: any;
   contractValueOption: any;
 
@@ -50,130 +52,15 @@ export class LastMonthReviewComponent implements OnInit {
             for (let item of resData.months) {
               xAxisData.push(item + '月');
             }
-            this.trendOption = {
-              tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                  type : 'shadow'
-                }
-              },
-              calculable : true,
-              legend: {
-                data: ['合同金额', '申请单量', '放款单量'],
-                right: 0,
-                textStyle: {
-                  color: '#ccc'
-                }
-              },
-              xAxis : [
-                {
-                  type: 'category',
-                  data: xAxisData,
-                  axisTick: { show: false },
-                  axisLabel: {
-                    textStyle: {
-                      color: '#ccc'
-                    }
-                  },
-                }
-              ],
-              yAxis : [
-                {
-                  type : 'value',
-                  name: '单位(万元)',
-                  nameTextStyle: {
-                    color: '#ccc'
-                  },
-                  splitNumber: 3,
-                  axisTick: { show: false },
-                  axisLabel: {
-                    formatter: '{value}',
-                    textStyle: {
-                      color: '#ccc'
-                    }
-                  },
-                  axisLine: { show: false },
-                  splitLine: { show: false },
-                },
-                {
-                  type : 'value',
-                  axisTick: { show: false },
-                  axisLabel: {
-                    textStyle: {
-                      color: '#ccc'
-                    }
-                  },
-                  axisLine: { show: false },
-                  splitLine: { show: false },
-                }
-              ],
-              series: [
-                {
-                  name: '申请单量',
-                  type: 'bar',
-                  yAxisIndex: 1,
-                  data: [resData.m1AppNumber, resData.m2AppNumber, resData.m3AppNumber,
-                    resData.m4AppNumber, resData.m5AppNumber, resData.m6AppNumber],
-                  barWidth: '40%',
-                  itemStyle: {
-                    normal: {
-                      color: {
-                        type: 'linear',
-                        x: 0, y: 0,
-                        x2: 0, y2: 1,
-                        colorStops: [
-                          {offset: 0, color: '#fdbf04'},
-                          {offset: 1, color: '#fb9a02'}
-                        ],
-                      }
-                    }
-                  }
-                },
-                {
-                  name: '放款单量',
-                  type: 'bar',
-                  yAxisIndex: 1,
-                  data: [resData.m1Number, resData.m2Number, resData.m3Number, resData.m4Number, resData.m5Number, resData.m6Number],
-                  barGap: 0,
-                  barWidth: '40%',
-                  itemStyle: {
-                    normal: {
-                      color: {
-                        type: 'linear',
-                        x: 0, y: 0,
-                        x2: 0, y2: 1,
-                        colorStops: [
-                          {offset: 0, color: '#fd6204'},
-                          {offset: 1, color: '#9a2819'}
-                        ],
-                      }
-                    }
-                  }
-                },
-
-                {
-                  name: '合同金额',
-                  type: 'line',
-                  symbol: 'circle',
-                  data: [resData.m1Amt, resData.m2Amt, resData.m3Amt, resData.m4Amt, resData.m5Amt, resData.m6Amt],
-                  itemStyle: {
-                    normal: {
-                      color: '#51c3cd',
-                    },
-                    opacity: 0
-                  },
-                  lineStyle: {
-                    normal: {
-                      color: '#51c3cd',
-                      shadowColor: 'rgba(3, 3, 3, 0.26)',
-                      shadowBlur: 10,
-                      shadowOffsetY: 2,
-                      shadowOffsetX: 2
-                    }
-                  }
-                }
-              ]
-            };
+            echart.LineBarChartOptions.xAxis[0].data = xAxisData;
+            echart.LineBarChartOptions.series[0].data =
+              [resData.m1Amt, resData.m2Amt, resData.m3Amt, resData.m4Amt, resData.m5Amt, resData.m6Amt].reverse();
+            echart.LineBarChartOptions.series[1].data =
+              [resData.m1AppNumber, resData.m2AppNumber, resData.m3AppNumber, resData.m4AppNumber, resData.m5AppNumber,
+              resData.m6AppNumber].reverse();
+            echart.LineBarChartOptions.series[2].data =
+              [resData.m1Number, resData.m2Number, resData.m3Number, resData.m4Number, resData.m5Number, resData.m6Number].reverse();
+            this.trendOption = echart.LineBarChartOptions;
           }
         });
   }
@@ -183,31 +70,8 @@ export class LastMonthReviewComponent implements OnInit {
         .getAll(this.pfmccompositionUrl)
         .then((res) => {
           if ( res.code === 0) {
-            let commonOption = {
-              tooltip : {
-                trigger: 'item',
-                formatter: '{b}<br/><span style="color:#fbcb04">{d}%</span>',
-                textStyle: { fontSize: 12 }
-              },
-              color: this.legendColorList,
-              series : [
-                {
-                  type: 'pie',
-                  radius : '75%',
-                  label: {
-                    normal: { show: false }
-                  },
-                  data: [],
-                  itemStyle: {
-                    emphasis: {
-                      shadowBlur: 10,
-                      shadowOffsetX: 0,
-                      shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                  }
-                }
-              ]
-            };
+            let commonOption = echart.PieChartOptions;
+            commonOption.color = this.legendColorList;
             let deepCopy = function(parent, clone) {
               let child = clone || {};
               for (let i in parent) {

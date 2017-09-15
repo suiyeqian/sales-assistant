@@ -3,6 +3,8 @@ import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { BackendService } from '../../core/services/backend.service';
 import { WaterMarkService } from '../../core/services/watermark.service';
 
+import * as echart from '../../echarts';
+
 @Component({
   selector: 'my-info',
   templateUrl: './info.component.html',
@@ -52,52 +54,9 @@ export class InfoComponent implements OnInit, AfterContentInit {
               indicator.push({text: item.name, max: 5});
               dataVals.push(item.value);
             }
-            this.radarOption = {
-              tooltip: { show: false},
-              radar: [
-                {
-                  indicator: indicator,
-                  radius: 80,
-                  name: {
-                    textStyle: {
-                      color: '#fdcb04'
-                    }
-                  },
-                  splitLine: {
-                    lineStyle: { color: '#43434e' }
-                  },
-                  splitArea: { show: false },
-                  axisLine: { show: false }
-                }
-              ],
-              series: [
-                {
-                  name: '我的竞争力',
-                  type: 'radar',
-                  symbol: 'none',
-                  lineStyle: {
-                    normal: {
-                      opacity: 0
-                    }
-                  },
-                  areaStyle: {
-                    normal: {
-                      opacity: 1,
-                      color: {
-                        type: 'linear',
-                        x: 0, y: 0,
-                        x2: 0, y2: 1,
-                        colorStops: [
-                          { offset: 0, color: '#fb9a02' },
-                          { offset: 1, color: '#fdbf04' }
-                        ]
-                      }
-                   }
-                 },
-                  data: [{ value: dataVals }]
-                }
-              ]
-            };
+            echart.RadarChartOptions.radar[0].indicator = indicator;
+            echart.RadarChartOptions.series[0].data[0].value = dataVals;
+            this.radarOption = echart.RadarChartOptions;
           }
         });
   }

@@ -46,6 +46,27 @@ export const LineBarChartOptions = {
   ],
   series: [
     {
+      name: '合同金额',
+      type: 'line',
+      symbol: 'circle',
+      data: [],
+      itemStyle: {
+        normal: {
+          color: '#51c3cd',
+        },
+        opacity: 0
+      },
+      lineStyle: {
+        normal: {
+          color: '#51c3cd',
+          shadowColor: 'rgba(3, 3, 3, 0.26)',
+          shadowBlur: 10,
+          shadowOffsetY: 2,
+          shadowOffsetX: 2
+        }
+      }
+    },
+    {
       name: '申请单量',
       type: 'bar',
       yAxisIndex: 1,
@@ -83,27 +104,6 @@ export const LineBarChartOptions = {
               {offset: 1, color: '#9a2819'}
             ],
           }
-        }
-      }
-    },
-    {
-      name: '合同金额',
-      type: 'line',
-      symbol: 'circle',
-      data: [],
-      itemStyle: {
-        normal: {
-          color: '#51c3cd',
-        },
-        opacity: 0
-      },
-      lineStyle: {
-        normal: {
-          color: '#51c3cd',
-          shadowColor: 'rgba(3, 3, 3, 0.26)',
-          shadowBlur: 10,
-          shadowOffsetY: 2,
-          shadowOffsetX: 2
         }
       }
     }

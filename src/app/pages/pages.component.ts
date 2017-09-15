@@ -24,15 +24,14 @@ export class PagesComponent implements OnInit {
   }
 
   getUser(): void {
-     this.bdService
-         .getAll(this.userUrl)
-         .then((res) => {
-           if ( res.code === 0) {
-             localStorage.clear();
-             sessionStorage.clear();
-             sessionStorage.setItem('user', JSON.stringify(res.data));
-             this.spinner.hide();
-           }
-         });
+    this.bdService
+        .getAll(this.userUrl)
+        .then((res) => {
+          if ( res.code === 0) {
+            sessionStorage.clear();
+            sessionStorage.setItem('user', JSON.stringify(res.data));
+            this.spinner.hide();
+          }
+        });
   }
 }

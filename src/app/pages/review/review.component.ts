@@ -3,6 +3,8 @@ import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { BackendService } from '../../core/services/backend.service';
 import { WaterMarkService } from '../../core/services/watermark.service';
 
+import * as echart from '../../echarts';
+
 @Component({
   selector: 'my-review',
   templateUrl: './review.component.html',
@@ -39,64 +41,10 @@ export class ReviewComponent implements OnInit, AfterContentInit {
             for (let item of resData.months) {
               xAxisData.push(item + '月');
             }
-            this.lineOption = {
-              tooltip: {
-                show: false
-              },
-              xAxis:  {
-                  type: 'category',
-                  data: xAxisData,
-                  axisTick: { show: false },
-                  axisLabel: {
-                    textStyle: {
-                      color: '#ccc'
-                    }
-                  }
-              },
-              yAxis: {
-                type: 'value',
-                name: '单位(万元)',
-                nameTextStyle: {
-                  color: '#ccc'
-                },
-                splitNumber: 3,
-                axisTick: { show: false },
-                axisLabel: {
-                  formatter:  function (value) {
-                    return (value / 10000).toFixed(1);
-                  },
-                  textStyle: {
-                    color: '#ccc'
-                  }
-                },
-                axisLine: { show: false },
-                splitLine: {
-                  show: true,
-                  lineStyle: {
-                    color: ['#3a3b45']
-                  }
-                },
-              },
-              color: ['#fe4504'],
-              textStyle: {
-                color: '#fdcb04'
-              },
-              series: [
-                {
-                    type: 'line',
-                    data: [resData.m1Amt, resData.m2Amt, resData.m3Amt, resData.m4Amt, resData.m5Amt, resData.m6Amt],
-                    label: {
-                      normal: {
-                       show: true,
-                       position: 'bottom',
-                       fontSize: 14
-                     }
-                    },
-                    symbol: 'circle',
-                    symbolSize: 10
-                }
-              ]
-            };
+            echart.LineChartOptions.xAxis.data = xAxisData;
+            echart.LineChartOptions.series[0].data =
+              [resData.m1Amt, resData.m2Amt, resData.m3Amt, resData.m4Amt, resData.m5Amt, resData.m6Amt].reverse();
+            this.lineOption = echart.LineChartOptions;
           }
         });
   }
