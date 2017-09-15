@@ -22,7 +22,7 @@ export class InfoComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit() {
-    let userInfo = JSON.parse(localStorage.user);
+    let userInfo = JSON.parse(sessionStorage.user);
     if (userInfo.sex === '男') {
       userInfo.avatarUrl = '/img/man.png';
     } else {
@@ -31,7 +31,7 @@ export class InfoComponent implements OnInit, AfterContentInit {
     this.myInfo = userInfo;
     this.getMyComp();
     this.getGrowthTrack();
-    this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).name + ' ' + JSON.parse(localStorage.user).number });
+    this.waterMark.load({ wmk_txt: JSON.parse(sessionStorage.user).name + ' ' + JSON.parse(sessionStorage.user).number });
   }
 
   ngAfterContentInit() {
@@ -110,7 +110,7 @@ export class InfoComponent implements OnInit, AfterContentInit {
             let resData = res.data;
             this.growthTrack = resData;
             this.waterMark.load(
-              { wmk_txt: JSON.parse(localStorage.user).name + ' ' + JSON.parse(localStorage.user).number },
+              { wmk_txt: JSON.parse(sessionStorage.user).name + ' ' + JSON.parse(sessionStorage.user).number },
               120 * resData.length);
           }
         });

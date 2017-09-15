@@ -20,7 +20,7 @@ export class ReviewComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
     this.getBonusTrend();
-    this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).name + ' ' + JSON.parse(localStorage.user).number }, 100);
+    this.waterMark.load({ wmk_txt: JSON.parse(sessionStorage.user).name + ' ' + JSON.parse(sessionStorage.user).number }, 100);
   }
 
   ngAfterContentInit() {

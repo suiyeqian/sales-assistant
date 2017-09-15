@@ -28,7 +28,9 @@ export class PagesComponent implements OnInit {
          .getAll(this.userUrl)
          .then((res) => {
            if ( res.code === 0) {
-             localStorage.setItem('user', JSON.stringify(res.data));
+             localStorage.clear();
+             sessionStorage.clear();
+             sessionStorage.setItem('user', JSON.stringify(res.data));
              this.spinner.hide();
            }
          });
