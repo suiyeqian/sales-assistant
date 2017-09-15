@@ -39,6 +39,7 @@ export class MonthPerformanceComponent implements OnInit {
         .then((res) => {
           if ( res.code === 0) {
             let resData = res.data;
+            echart.LineBarChartOptions.xAxis[0].data = ['W1', 'W2', 'W3', 'W4', 'W5'];
             echart.LineBarChartOptions.series[0].data =
               [resData.w1Amt, resData.w2Amt, resData.w3Amt, resData.w4Amt, resData.w5Amt].reverse();
             echart.LineBarChartOptions.series[1].data =

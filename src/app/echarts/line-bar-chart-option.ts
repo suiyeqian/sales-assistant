@@ -12,7 +12,7 @@ export const LineBarChartOptions = {
   xAxis : [
     {
       type: 'category',
-      data: ['W1', 'W2', 'W3', 'W4', 'W5'],
+      data: [],
       axisTick: { show: false },
       axisLabel: {
         textStyle: { color: '#ccc' }
