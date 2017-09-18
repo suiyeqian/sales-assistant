@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import { BackendService } from '../core/services/backend.service';
+// import { BackendService } from '../core/services/backend.service';
 import { SpinnerService } from '../core/services/spinner.service';
 // import { WaterMarkService } from '../core/services/watermark.service';
 
@@ -10,13 +11,10 @@ import { SpinnerService } from '../core/services/spinner.service';
   styleUrls: ['./pages.component.scss'],
 })
 export class PagesComponent implements OnInit {
-  user = Object.assign({});
-  private userUrl = 'rest/personalinfo/my_info';
 
   constructor(
-    private bdService: BackendService,
+    private route: ActivatedRoute,
     private spinner: SpinnerService,
-    // private waterMark: WaterMarkService,
   ) { }
 
   ngOnInit() {
@@ -24,14 +22,11 @@ export class PagesComponent implements OnInit {
   }
 
   getUser(): void {
-    this.bdService
-        .getAll(this.userUrl)
-        .then((res) => {
-          if ( res.code === 0) {
-            sessionStorage.clear();
-            sessionStorage.setItem('user', JSON.stringify(res.data));
-            this.spinner.hide();
-          }
-        });
+    this.route.data
+    .subscribe((data) => {
+      sessionStorage.clear();
+      sessionStorage.setItem('user', JSON.stringify(data.userInfo));
+      this.spinner.hide();
+    });
   }
 }

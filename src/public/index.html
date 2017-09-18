@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>销售助手</title>
     <script src="/index.min.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <base href="/">
   </head>
   <body>
@@ -23,4 +24,20 @@
       </div> -->
     </div>
   </body>
+  <script type="text/javascript">
+    function onBridgeReady(){
+      WeixinJSBridge.call('hideOptionMenu');
+    }
+
+    if (typeof WeixinJSBridge == "undefined"){
+      if( document.addEventListener ){
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+      }else if (document.attachEvent){
+        document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+      }
+    }else{
+      onBridgeReady();
+    }
+  </script>
 </html>

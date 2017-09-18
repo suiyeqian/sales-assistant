@@ -5,12 +5,14 @@ import { PagesComponent } from './pages.component';
 import { TrackComponent } from './track/track.component';
 
 // import { UserService } from '../core/services/user.service';
+import { UserInfoResolver }   from './user-info-resolver.service';
 
 const pagesRoutes: Routes = [
   {
     path: 'pages',
     component: PagesComponent,
     // canActivate: [ UserService ],
+    resolve: { userInfo: UserInfoResolver },
     children: [
       {
         path: '',
@@ -34,6 +36,9 @@ const pagesRoutes: Routes = [
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    UserInfoResolver
   ]
 })
 export class PagesRoutingModule {}
