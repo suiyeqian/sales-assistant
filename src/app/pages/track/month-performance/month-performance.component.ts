@@ -70,7 +70,7 @@ export class MonthPerformanceComponent implements OnInit {
                 resData.coefficient = resData.coefficients[i];
                 resData.royaltyAmt = resData.expectAmt * resData.coefficient / 100;
                 if (i === resData.sections.length - 1) {
-                  this.myPctPosition = '73%';
+                  this.myPctPosition = '76%';
                   break;
                 }
                 let interval_n = resData.sections[i + 1] - resData.sections[i];
@@ -90,7 +90,7 @@ export class MonthPerformanceComponent implements OnInit {
               if (cmpeAmt > resData.sections[i]) {
                 resData.cmpeBonus = resData.cmpeAmt * resData.coefficients[i] / 100;
                 if (i === resData.sections.length - 1) {
-                  this.myRealPctPosition = '73%';
+                  this.myRealPctPosition = '71%';
                   break;
                 }
                 let interval_n = resData.sections[i + 1] - resData.sections[i];
