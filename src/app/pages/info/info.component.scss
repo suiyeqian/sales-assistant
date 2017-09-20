@@ -74,7 +74,7 @@
 .timeline{
   margin-top: 1.07rem;
   margin-bottom: .88rem;
-  padding-left: 1.13rem;
+  padding-left: .8rem;
 }
 .timeline .timeline-item:not(:last-child){
   height: 3.8rem;
@@ -103,7 +103,7 @@
     margin-top: -0.72rem;
     font-size: 16px;
     color: #ccc;
-    width: 65vw;
+    width: 70vw;
     height: 80px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -128,4 +128,5 @@
   text-overflow:ellipsis;
   overflow:hidden;
   white-space:nowrap;
+  font-size: 15px;
 }

@@ -6,7 +6,8 @@ export const RadarChartOptions = {
       radius: 80,
       name: {
         textStyle: {
-          color: '#fdcb04'
+          color: '#fdcb04',
+          fontSize: 14
         }
       },
       splitLine: {
